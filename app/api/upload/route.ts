@@ -15,11 +15,37 @@ export async function POST(request: NextRequest) {
     const result = text
 
     // const result = await processWithBedrock(Uint8, prompt);
-
-
-
-
     console.log(result)
+
+    // Prompt we gonna use
+    const prompt = `Review the following resume content and provide concise, actionable suggestions for improvement with a focus on increasing ATS (Applicant Tracking System) compliance. Keep each suggestion brief and avoid exceeding a total of 500 words.
+
+    1. **Avoid Repetition**: Identify repeated words or phrases and suggest alternatives.
+    2. **Spelling and Grammar**: Point out any spelling or grammatical errors and provide corrections.
+    3. **Quantify Impact**: Add specific, quantifiable achievements to the experience section.
+    4. **Formatting and Keywords**: Ensure proper formatting and include relevant keywords from the job description.
+    5. **Content Relevance**: Verify that the content is relevant and organized with distinct sections.
+    6. **Section-Specific Feedback**: Provide brief suggestions for each resume section, including Contact Information, Summary/Objective, Work Experience, Education, Skills, and Certifications or Achievements.
+    
+    Resume content:
+    ${text}
+    
+    Please provide your suggestions in a clear and structured format, addressing each point above in a maximum of 700 words.
+    The output format should be: for every suggestion, give heading and its description, that's it dont give anything else, like:
+    {
+        suggestions: [
+            {
+                heading: [suggestion heading],
+                description: [suggestion description]
+            }, {
+                heading: [suggestion heading],
+                description: [suggestion description]
+            }
+        ]
+    }
+
+    Give me the correct json format without voilating the rules of JSON object, give me the accurate json object.
+    `
 
     return NextResponse.json({ success: true, data: result });
   } catch (error) {
