@@ -10,7 +10,7 @@ import { PdfReader } from "pdfreader";
 
 export async function POST(request: NextRequest) {
   try {
-    const {text} = await request.json();
+    const { text } = await request.json();
 
     // const result = text
 
@@ -26,10 +26,10 @@ export async function POST(request: NextRequest) {
     // 4. **Formatting and Keywords**: Ensure proper formatting and include relevant keywords from the job description.
     // 5. **Content Relevance**: Verify that the content is relevant and organized with distinct sections.
     // 6. **Section-Specific Feedback**: Provide brief suggestions for each resume section, including Contact Information, Summary/Objective, Work Experience, Education, Skills, and Certifications or Achievements.
-    
+
     // Resume content:
     // ${text}
-    
+
     // Please provide your suggestions in a clear and structured format, addressing each point above in a maximum of 700 words.
     // The output format should be: for every suggestion, give heading and its description, that's it dont give anything else, like:
     // {
@@ -47,7 +47,7 @@ export async function POST(request: NextRequest) {
     // Give me the correct json format without voilating the rules of JSON object, give me the accurate json object.
     // `
 
-        const result = await processWithBedrock( text);
+    const result = await processWithBedrock(text);
 
     return NextResponse.json({ success: true, data: result });
   } catch (error) {
@@ -56,9 +56,14 @@ export async function POST(request: NextRequest) {
   }
 }
 
-const processWithBedrock = async ( prompt: string) => {
+const processWithBedrock = async (prompt: string) => {
 
-  const client = new BedrockRuntimeClient({ region: "us-east-1" });
+  const client = new BedrockRuntimeClient({
+    region: "us-east-1", credentials: {
+      accessKeyId: "",
+      secretAccessKey: ""
+    }
+  });
   const modelId = "anthropic.claude-3-haiku-20240307-v1:0";
 
 
@@ -66,7 +71,7 @@ const processWithBedrock = async ( prompt: string) => {
     modelId,
     messages: [
       {
-       "content": [{"text": prompt}],
+        "content": [{ "text": prompt }],
         role: "user"
       },
     ],
