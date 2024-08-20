@@ -1,12 +1,13 @@
 "use client"
 import React, { useState, ChangeEvent, FormEvent } from 'react';
 
+import PDFToText from 'react-pdftotext';
 
 export default function Home() {
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
   const [prompt, setPrompt] = useState<string>('');
 
-  const handleFileChange = (event: ChangeEvent<HTMLInputElement>) => {
+  const handleFileChange = async (event: ChangeEvent<HTMLInputElement>) => {
     if (event.target.files) {
       setSelectedFile(event.target.files[0]);
     }
@@ -18,31 +19,26 @@ export default function Home() {
 
   const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+    console.log("submitted")
 
     if (!selectedFile || !prompt) {
       alert('Please upload a file and enter a prompt');
       return;
     }
-
-    const data = new FormData();
-    data.append('file', selectedFile);
-    data.append('prompt', prompt);
-
-    console.log(data.get("file"))
-    // console.log(data.get("prompt"))
-
+    const text = await PDFToText(selectedFile);
 
     try {
       const response = await fetch('/api/upload', {
         method: 'POST',
-        body: data,
+        body: JSON.stringify({ text }),
       });
 
       if (!response.ok) throw new Error(await response.text())
       } catch (e: any) {
-        // Handle errors here
         console.error(e)
       }
+
+
   };
 
 

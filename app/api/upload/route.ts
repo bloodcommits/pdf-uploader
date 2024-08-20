@@ -1,36 +1,25 @@
 import { NextRequest, NextResponse } from 'next/server';
-import AWS from 'aws-sdk';
-
 import {
   BedrockRuntimeClient,
   ConverseCommand,
 } from "@aws-sdk/client-bedrock-runtime";
 
+// import pdfParse from 'pdf-parse';
+import { PdfReader } from "pdfreader";
+
+
 export async function POST(request: NextRequest) {
   try {
+    const {text} = await request.json();
 
-    const formData = await request.formData();
-    const file = formData.get('file') as Blob;
-    console.log("🚀 ~ POST ~ file:", file)
-    const prompt = formData.get('prompt') as string;
+    const result = text
 
-    if (!file) {
-      return NextResponse.json({ error: 'File is required' }, { status: 400 });
-    }
+    // const result = await processWithBedrock(Uint8, prompt);
 
-    if (!prompt) {
-      return NextResponse.json({ error: 'prompt is required' }, { status: 400 });
-    }
 
-    const arrayBuffer = await file.arrayBuffer();
-    const buff = await file.arrayBuffer()
-    let Uint8 = new Uint8Array(buff); // x is your uInt8Array
-    // perform all required operations with x here.
-    console.log(Uint8);
 
-    // const buffer = Buffer.from(arrayBuffer);
 
-    const result = await processWithBedrock(Uint8, prompt);
+    console.log(result)
 
     return NextResponse.json({ success: true, data: result });
   } catch (error) {
@@ -48,10 +37,6 @@ const processWithBedrock = async (fileContent: Uint8Array, prompt: string) => {
 
   const userMessage =
     "Describe the purpose of a 'hello world' program in one line.";
-
-
-
-
   const command = new ConverseCommand({
     modelId,
     messages: [
