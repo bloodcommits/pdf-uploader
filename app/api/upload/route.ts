@@ -10,68 +10,62 @@ import { PdfReader } from "pdfreader";
 
 export async function POST(request: NextRequest) {
   try {
-    const { text } = await request.json();
+    const {text} = await request.json();
+    const prompt = `This is a resume which is unformatted. Fix any grammatical mistakes/errors and extract all data from resume and insert corrected data into json format as below given json structure.
+{ "personalInfo": { "name": "", "phone": "", "email": "", "age": "", "location": "" },
+ "academicQualifications": [ "" , // ...multiple items ],
+ "professionalSummary": [ "" , // ...multiple items ],
+ "professionalExperience": [ { "position": "", "institution": "", "location": "",
+ "subjects": [ "" , // ...multiple items ], "level": "", "status": "", "duration": "" } ],
+ "additionalResponsibilities": [ "" , // ...multiple items ],
+ "professionalDevelopment": [ "" , // ...multiple items ],
+ "professionalSkills": [ "" , // ...multiple items ],
+ "professionalAccolades": [ "" , // ...multiple items ] }
 
-    // const result = text
+ Resume content:${text} 
 
+`
 
-    // console.log(result)
+        const response = await processWithBedrock( prompt);
+        // console.log(response)
+         const textarray = response.output?.message?.content
+         if(textarray){
+          const jsonString = textarray[0].text;
+          if(jsonString){
+            const simpleString = jsonString.replace(/\s+/g, " ");
+            // console.log(simpleString)
+            const startIndex = simpleString.indexOf("{");
+            // console.log(startIndex);
+            const endIndex = simpleString.lastIndexOf("}");
+            // console.log(endIndex);
+            const jsonObjectString = simpleString.substring(startIndex,endIndex+1);
+            console.log(jsonObjectString)
+          }
 
-    // Prompt we gonna use
-    // const prompt = `Review the following resume content and provide concise, actionable suggestions for improvement with a focus on increasing ATS (Applicant Tracking System) compliance. Keep each suggestion brief and avoid exceeding a total of 500 words.
+         }
 
-    // 1. **Avoid Repetition**: Identify repeated words or phrases and suggest alternatives.
-    // 2. **Spelling and Grammar**: Point out any spelling or grammatical errors and provide corrections.
-    // 3. **Quantify Impact**: Add specific, quantifiable achievements to the experience section.
-    // 4. **Formatting and Keywords**: Ensure proper formatting and include relevant keywords from the job description.
-    // 5. **Content Relevance**: Verify that the content is relevant and organized with distinct sections.
-    // 6. **Section-Specific Feedback**: Provide brief suggestions for each resume section, including Contact Information, Summary/Objective, Work Experience, Education, Skills, and Certifications or Achievements.
-
-    // Resume content:
-    // ${text}
-
-    // Please provide your suggestions in a clear and structured format, addressing each point above in a maximum of 700 words.
-    // The output format should be: for every suggestion, give heading and its description, that's it dont give anything else, like:
-    // {
-    //     suggestions: [
-    //         {
-    //             heading: [suggestion heading],
-    //             description: [suggestion description]
-    //         }, {
-    //             heading: [suggestion heading],
-    //             description: [suggestion description]
-    //         }
-    //     ]
-    // }
-
-    // Give me the correct json format without voilating the rules of JSON object, give me the accurate json object.
-    // `
-
-    const result = await processWithBedrock(text);
-
-    return NextResponse.json({ success: true, data: result });
+    return NextResponse.json({ success: true, data: response });
   } catch (error) {
     console.error('Error processing file:', error);
     return NextResponse.json({ error: 'Error processing file' }, { status: 500 });
   }
 }
 
-const processWithBedrock = async (prompt: string) => {
+const processWithBedrock = async ( prompt: string) => {
 
   const client = new BedrockRuntimeClient({
-    region: "us-east-1", credentials: {
-      accessKeyId: "",
-      secretAccessKey: ""
+    region: "us-east-1", 
+    credentials: {
+      accessKeyId:"",
+      secretAccessKey:""
     }
   });
-  const modelId = "anthropic.claude-3-haiku-20240307-v1:0";
-
-
-  const command = new ConverseCommand({
+  const modelId = "anthropic.claude-3-5-sonnet-20240620-v1:0";
+ const command = new ConverseCommand({
     modelId,
     messages: [
       {
-        "content": [{ "text": prompt }],
+       "content": [{"text": prompt}],
         role: "user"
       },
     ],
@@ -90,3 +84,4 @@ const processWithBedrock = async (prompt: string) => {
     throw new Error('Failed to process with Bedrock');
   }
 };
+
