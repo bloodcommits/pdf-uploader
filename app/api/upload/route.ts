@@ -27,6 +27,7 @@ export async function POST(request: NextRequest) {
 `
 
         const response = await processWithBedrock( prompt);
+        let data="";
         // console.log(response)
          const textarray = response.output?.message?.content
          if(textarray){
@@ -38,13 +39,13 @@ export async function POST(request: NextRequest) {
             // console.log(startIndex);
             const endIndex = simpleString.lastIndexOf("}");
             // console.log(endIndex);
-            const jsonObjectString = simpleString.substring(startIndex,endIndex+1);
-            console.log(jsonObjectString)
+            data = simpleString.substring(startIndex,endIndex+1);
+            console.log(data)
           }
 
          }
 
-    return NextResponse.json({ success: true, data: response });
+    return NextResponse.json({ success: true, data: data });
   } catch (error) {
     console.error('Error processing file:', error);
     return NextResponse.json({ error: 'Error processing file' }, { status: 500 });
