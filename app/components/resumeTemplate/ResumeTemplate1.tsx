@@ -1,11 +1,32 @@
 import React from 'react'
+import jsPDF from 'jspdf';
+import html2canvas from 'html2canvas';
 
 const ResumeTemplate1 = () => {
+  const generatePDF = async () => {
+    const element = document.getElementById('pdf-content');
+
+    if (!element) {
+      return;
+    }
+
+    const canvas = await html2canvas(element);
+    const imgData = canvas.toDataURL('image/png');
+    const pdf = new jsPDF({
+      orientation: 'portrait',
+      unit: 'pt',
+      format: [canvas.width, canvas.height],
+    });
+
+    pdf.addImage(imgData, 'PNG', 0, 0, canvas.width, canvas.height);
+    pdf.save('download.pdf');
+  };
   return (
     <div className="bg-gray-100 font-sans">
-
-    <div className="container mx-auto py-8 px-4">
-        <div className="bg-white p-6 rounded-lg shadow-lg">
+      {/* NOT WORKING RPOPERLY */}
+      {/* <button onClick={generatePDF}>Download as PDF</button> */}
+    <div  className="container mx-auto py-8 px-4">
+        <div id="pdf-content" className="bg-white p-6 rounded-lg shadow-lg">
             <h1 className="text-3xl font-semibold">John Doe</h1>
             <p className="text-gray-600">Web Developer</p>
 
