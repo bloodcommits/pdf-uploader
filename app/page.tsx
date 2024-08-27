@@ -39,7 +39,8 @@ export default function Home() {
       setLoading(false)
       setResult(JSON.parse(response_json?.data));
       // redirect("/resumeBuilder/template1")
-      localStorage.setItem("data",JSON.stringify(response_json?.data))
+      localStorage.setItem("data", response_json?.data)
+      router.push("/resumeBuilder/template1")
     } catch (e: any) {
       setLoading(false)
       console.error(e)
@@ -93,13 +94,13 @@ export default function Home() {
       <h2 className='font-bold m-5 text-3xl '>Select the template</h2>
       <div className='flex flex-auto gap-5'>
         <button>
-        <Image src="/template1.png" className='' objectFit='cover' height={500} width={500} alt='temp1' />
+          <Image src="/template1.png" className='' objectFit='cover' height={500} width={500} alt='temp1' />
         </button>
         <button>
-        <Image src="/template1.png" className='' objectFit='cover' height={500} width={500} alt='temp1' />
+          <Image src="/template1.png" className='' objectFit='cover' height={500} width={500} alt='temp1' />
         </button>
         <button>
-        <Image src="/template1.png" className='' objectFit='cover' height={500} width={500} alt='temp1' />
+          <Image src="/template1.png" className='' objectFit='cover' height={500} width={500} alt='temp1' />
         </button>
       </div>
     </div>
