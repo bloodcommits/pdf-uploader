@@ -5,7 +5,8 @@ import PDFToText from 'react-pdftotext';
 
 export default function Home() {
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
-  const [prompt, setPrompt] = useState<string>('');
+  const [result, setResult] = useState()
+  const [loading, setLoading] = useState(false)
 
   const handleFileChange = async (event: ChangeEvent<HTMLInputElement>) => {
     if (event.target.files) {
@@ -13,18 +14,16 @@ export default function Home() {
     }
   };
 
-  const handlePromptChange = (event: ChangeEvent<HTMLInputElement>) => {
-    setPrompt(event.target.value);
-  };
-
   const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     console.log("submitted")
 
-    if (!selectedFile || !prompt) {
+    if (!selectedFile) {
       alert('Please upload a file and enter a prompt');
       return;
     }
+
+    setLoading(true)
     const text = await PDFToText(selectedFile);
 
     try {
@@ -34,18 +33,22 @@ export default function Home() {
       });
 
       if (!response.ok) throw new Error(await response.text())
-      } catch (e: any) {
-        console.error(e)
-      }
+      const response_json = await response.json();
+      setLoading(false)
+      setResult(JSON.parse(response_json?.data));
+    } catch (e: any) {
+      setLoading(false)
+      console.error(e)
+    }
 
 
   };
 
 
-  
+
   return (
-    <div className="flex justify-center items-center min-h-screen bg-gray-100">
-      <div className="bg-white p-8 rounded-lg shadow-md w-full max-w-md">
+    <div className="flex flex-col justify-center items-center min-h-screen bg-gray-100">
+      <div className="bg-white p-8 rounded-lg shadow-md w-full max-w-md mb-2">
         <h2 className="text-2xl font-semibold text-gray-800 mb-6">Upload PDF and Enter Prompt</h2>
         <form onSubmit={handleSubmit} className="space-y-4">
           <div>
@@ -56,7 +59,7 @@ export default function Home() {
               className="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 focus:outline-none"
             />
           </div>
-          <div>
+          {/* <div>
             <input
               type="text"
               value={prompt}
@@ -64,7 +67,7 @@ export default function Home() {
               placeholder="Enter your prompt here"
               className="block w-full p-3 text-sm text-gray-900 border border-gray-300 rounded-lg focus:ring-indigo-500 focus:border-indigo-500"
             />
-          </div>
+          </div> */}
           <button
             type="submit"
             className="w-full bg-indigo-600 text-white py-3 rounded-lg font-semibold hover:bg-indigo-700 transition duration-300"
@@ -72,6 +75,16 @@ export default function Home() {
             Submit
           </button>
         </form>
+
+      </div>
+      <div className='w-full max-w-md' >
+
+        {
+          (result || loading) &&
+          <pre>
+            result: {result ? JSON.stringify(result, undefined, 2) : "Loading...."}
+          </pre>
+        }
       </div>
     </div>
   );

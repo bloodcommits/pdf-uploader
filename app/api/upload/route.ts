@@ -10,7 +10,7 @@ import { PdfReader } from "pdfreader";
 
 export async function POST(request: NextRequest) {
   try {
-    const {text} = await request.json();
+    const { text } = await request.json();
     const prompt = `This is a resume which is unformatted. Fix any grammatical mistakes/errors and extract all data from resume and insert corrected data into json format as below given json structure.
 { "personalInfo": { "name": "", "phone": "", "email": "", "age": "", "location": "" },
  "academicQualifications": [ "" , // ...multiple items ],
@@ -26,24 +26,25 @@ export async function POST(request: NextRequest) {
 
 `
 
-        const response = await processWithBedrock( prompt);
-        let data="";
-        // console.log(response)
-         const textarray = response.output?.message?.content
-         if(textarray){
-          const jsonString = textarray[0].text;
-          if(jsonString){
-            const simpleString = jsonString.replace(/\s+/g, " ");
-            // console.log(simpleString)
-            const startIndex = simpleString.indexOf("{");
-            // console.log(startIndex);
-            const endIndex = simpleString.lastIndexOf("}");
-            // console.log(endIndex);
-            data = simpleString.substring(startIndex,endIndex+1);
-            console.log(data)
-          }
+    const response = await processWithBedrock(prompt);
+    let data = "";
+    // console.log(response)
+    const textarray = response.output?.message?.content
+    console.log("🚀 ~ POST ~ textarray:", textarray)
+    if (textarray) {
+      const jsonString = textarray[0].text;
+      if (jsonString) {
+        const simpleString = jsonString.replace(/\s+/g, " ");
+        // console.log(simpleString)
+        const startIndex = simpleString.indexOf("{");
+        // console.log(startIndex);
+        const endIndex = simpleString.lastIndexOf("}");
+        // console.log(endIndex);
+        data = simpleString.substring(startIndex, endIndex + 1);
+        console.log(data)
+      }
 
-         }
+    }
 
     return NextResponse.json({ success: true, data: data });
   } catch (error) {
@@ -52,26 +53,26 @@ export async function POST(request: NextRequest) {
   }
 }
 
-const processWithBedrock = async ( prompt: string) => {
+const processWithBedrock = async (prompt: string) => {
 
   const client = new BedrockRuntimeClient({
-    region: "us-east-1", 
+    region: "us-east-1",
     credentials: {
-      accessKeyId:"",
-      secretAccessKey:""
+      accessKeyId: process.env.ACCESS_KEY || "",
+      secretAccessKey: process.env.SECRET_ACCESS_KEY || "",
     }
   });
   const modelId = "anthropic.claude-3-5-sonnet-20240620-v1:0";
- const command = new ConverseCommand({
+  const command = new ConverseCommand({
     modelId,
     messages: [
       {
-       "content": [{"text": prompt}],
+        "content": [{ "text": prompt }],
         role: "user"
       },
     ],
 
-    inferenceConfig: { maxTokens: 512, temperature: 0.5, topP: 0.9 },
+    inferenceConfig: { maxTokens: 4000, temperature: 0.5, topP: 0.9 },
   });
 
 
