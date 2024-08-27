@@ -34,7 +34,7 @@ const StandardTemplate = () => {
   return (
     <div className="bg-gray-100 flex justify-center flex-col items-center" >
 
-      {/* <ReactToPrint
+      <ReactToPrint
         trigger={() => (
           <button
             className='bg-blue-300 px-3 py-3 rounded-lg mt-2 ml-2'
@@ -45,15 +45,15 @@ const StandardTemplate = () => {
         content={() => resumeDownloadRef.current}
         pageStyle="@page { margin: 0; }"
         documentTitle='Resume Builder'
-      /> */}
-      <button onClick={handleGeneratePdf}>
+      />
+      {/* <button onClick={handleGeneratePdf}>
         DOWNLOAD PDF
-      </button>
+      </button> */}
 
       <div
       className="p-0"
-      //  ref={resumeDownloadRef}
-       ref={contentRef}
+       ref={resumeDownloadRef}
+      //  ref={contentRef}
         >
         <ResumeTemplate1 />
 
