@@ -1,4 +1,5 @@
 "use client"
+import Image from 'next/image';
 import React, { useState, ChangeEvent, FormEvent } from 'react';
 
 import PDFToText from 'react-pdftotext';
@@ -47,7 +48,7 @@ export default function Home() {
 
 
   return (
-    <div className="flex flex-col justify-center items-center min-h-screen bg-gray-100">
+    <div className="flex flex-col justify-center items-center min-h-screen bg-gray-100 pt-10">
       <div className="bg-white p-8 rounded-lg shadow-md w-full max-w-md mb-2">
         <h2 className="text-2xl font-semibold text-gray-800 mb-6">Upload PDF and Enter Prompt</h2>
         <form onSubmit={handleSubmit} className="space-y-4">
@@ -85,6 +86,18 @@ export default function Home() {
             result: {result ? JSON.stringify(result, undefined, 2) : "Loading...."}
           </pre>
         }
+      </div>
+      <h2 className='font-bold m-5 text-3xl '>Select the template</h2>
+      <div className='flex flex-auto gap-5'>
+        <button>
+        <Image src="/template1.png" className='' objectFit='cover' height={500} width={500} alt='temp1' />
+        </button>
+        <button>
+        <Image src="/template1.png" className='' objectFit='cover' height={500} width={500} alt='temp1' />
+        </button>
+        <button>
+        <Image src="/template1.png" className='' objectFit='cover' height={500} width={500} alt='temp1' />
+        </button>
       </div>
     </div>
   );
