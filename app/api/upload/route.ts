@@ -30,7 +30,7 @@ export async function POST(request: NextRequest) {
     let data = "";
     // console.log(response)
     const textarray = response.output?.message?.content
-    console.log("🚀 ~ POST ~ textarray:", textarray)
+    // console.log("🚀 ~ POST ~ textarray:", textarray)
     if (textarray) {
       const jsonString = textarray[0].text;
       if (jsonString) {

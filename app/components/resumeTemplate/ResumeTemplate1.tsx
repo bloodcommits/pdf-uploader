@@ -1,8 +1,10 @@
 import React from 'react'
-import jsPDF from 'jspdf';
-import html2canvas from 'html2canvas';
 
 const ResumeTemplate1 = () => {
+const data = localStorage.getItem("data")
+console.log(data)
+
+
   return (
     <div className="bg-gray-100 font-sans">
     <div  className="container mx-auto py-8 px-4">

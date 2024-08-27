@@ -1,13 +1,14 @@
 "use client"
 import Image from 'next/image';
 import React, { useState, ChangeEvent, FormEvent } from 'react';
-
+import { useRouter } from 'next/navigation'
 import PDFToText from 'react-pdftotext';
 
 export default function Home() {
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
   const [result, setResult] = useState()
   const [loading, setLoading] = useState(false)
+  const router = useRouter()
 
   const handleFileChange = async (event: ChangeEvent<HTMLInputElement>) => {
     if (event.target.files) {
@@ -37,6 +38,11 @@ export default function Home() {
       const response_json = await response.json();
       setLoading(false)
       setResult(JSON.parse(response_json?.data));
+      // redirect("/resumeBuilder/template1")
+      localStorage.setItem("data",JSON.stringify(result, undefined, 2))
+      if (response.ok) {
+        router.push('/resumeBuilder/template1')
+      }
     } catch (e: any) {
       setLoading(false)
       console.error(e)
