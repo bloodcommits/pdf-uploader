@@ -1,7 +1,10 @@
+import ResumeTemplate1 from "@/app/components/resumeTemplate/ResumeTemplate1"
+
 const StandardTemplate =()=>{
+
     return(
         <div>
-            jai shree ram
+           <ResumeTemplate1/>
         </div>
     )
 }
