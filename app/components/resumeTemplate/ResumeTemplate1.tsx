@@ -2,8 +2,11 @@ import React from 'react'
 
 const ResumeTemplate1 = () => {
 const data = localStorage.getItem("data")
-console.log(data)
+if(data){
+  const obj = JSON.parse(data)
+  console.log(obj)
 
+}
 
   return (
     <div className="bg-gray-100 font-sans">

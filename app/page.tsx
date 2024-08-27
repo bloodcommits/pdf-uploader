@@ -39,10 +39,7 @@ export default function Home() {
       setLoading(false)
       setResult(JSON.parse(response_json?.data));
       // redirect("/resumeBuilder/template1")
-      localStorage.setItem("data",JSON.stringify(result, undefined, 2))
-      if (response.ok) {
-        router.push('/resumeBuilder/template1')
-      }
+      localStorage.setItem("data",JSON.stringify(response_json?.data))
     } catch (e: any) {
       setLoading(false)
       console.error(e)
