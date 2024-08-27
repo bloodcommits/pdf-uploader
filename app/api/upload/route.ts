@@ -41,7 +41,7 @@ export async function POST(request: NextRequest) {
         const endIndex = simpleString.lastIndexOf("}");
         // console.log(endIndex);
         data = simpleString.substring(startIndex, endIndex + 1);
-        console.log(data)
+        // console.log(data)
       }
 
     }

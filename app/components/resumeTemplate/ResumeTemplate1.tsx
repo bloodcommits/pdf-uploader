@@ -3,8 +3,11 @@ import React from 'react'
 const ResumeTemplate1 = () => {
 const data = localStorage.getItem("data")
 if(data){
-  const obj = JSON.parse(data)
-  console.log(obj)
+  const jsonData = JSON.parse(data);
+  if (jsonData && jsonData.professionalSkills) {
+    console.log(jsonData.professionalSkills);
+  }
+
 
 }
 
