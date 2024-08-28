@@ -113,47 +113,50 @@ export default function Home() {
               handleImageClick1();
             }}
             src="/template1.png"
-            className={`cursor-pointer transition-transform duration-200 ${
-              isActive1 ? "transform scale-105 border-4 border-blue-300" : ""
-            }`}
+            className={`cursor-pointer transition-transform duration-200 ${isActive1 ? "transform scale-105 border-4 border-blue-300" : ""
+              }`}
             objectFit="cover"
             height={500}
             width={500}
             alt="temp1"
           />
         </button>
-        <button>
-          <Image
-            onClick={() => {
-              templateselect(2);
-              handleImageClick2();
-            }}
-            src="/template1.png"
-            className={`cursor-pointer transition-transform duration-200 ${
-              isActive2 ? "transform scale-105 border-4 border-red-300" : ""
-            }`}
-            objectFit="cover"
-            height={500}
-            width={500}
-            alt="temp1"
-          />
-        </button>
-        <button>
-          <Image
-            onClick={() => {
-              templateselect(3);
-              handleImageClick3();
-            }}
-            src="/template1.png"
-            className={`cursor-pointer transition-transform duration-200 ${
-              isActive3 ? "transform scale-105 border-4 border-green-300" : ""
-            }`}
-            objectFit="cover"
-            height={500}
-            width={500}
-            alt="temp1"
-          />
-        </button>
+        {
+          /**
+           *   <button>
+            <Image
+              onClick={() => {
+                templateselect(2);
+                handleImageClick2();
+              }}
+              src="/template1.png"
+              className={`cursor-pointer transition-transform duration-200 ${
+                isActive2 ? "transform scale-105 border-4 border-red-300" : ""
+              }`}
+              objectFit="cover"
+              height={500}
+              width={500}
+              alt="temp1"
+            />
+          </button>
+          <button>
+            <Image
+              onClick={() => {
+                templateselect(3);
+                handleImageClick3();
+              }}
+              src="/template1.png"
+              className={`cursor-pointer transition-transform duration-200 ${
+                isActive3 ? "transform scale-105 border-4 border-green-300" : ""
+              }`}
+              objectFit="cover"
+              height={500}
+              width={500}
+              alt="temp1"
+            />
+          </button>
+           */
+        }
       </div>
     </div>
   );
