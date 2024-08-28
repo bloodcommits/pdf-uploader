@@ -1,10 +1,11 @@
 "use client"
-import ResumeTemplate1 from "@/app/components/resumeTemplate/ResumeTemplate1"
+
+import ResumeTemplate2 from "@/app/components/resumeTemplate/ResumeTemplate2"
 
 const StandardTemplate = () => {
   return (
     <div className="bg-gray-100 " >
-        <ResumeTemplate1 />
+        <ResumeTemplate2 />
     </div>
   )
 }

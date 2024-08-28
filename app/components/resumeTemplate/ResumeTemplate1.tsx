@@ -60,8 +60,14 @@ const ResumeTemplate1 = () => {
     }, []);
 
     return (
-        <div className="bg-gray-100 font-sans" onClick={() => toPDF()} >
-            <div className="container mx-auto py-8 px-4  ">
+        <div className="bg-gray-100 font-sans" >
+           <button
+            className='bg-blue-300 px-3 py-3 rounded-lg mt-2 ml-2'
+            onClick={() => toPDF()}
+          >
+            <p className='ml-1 text-sm'>Download Template 1</p>
+          </button>
+            <div className="container mx-auto py-8 px-4 w-[794px]   ">
                 <div id="pdf-content" className="bg-white p-6 rounded-lg shadow-lg" ref={targetRef} >
                     <div className="flex justify-between items-center  ">
                         <div>
@@ -72,7 +78,7 @@ const ResumeTemplate1 = () => {
                             <ul className="list-disc list-inside text-gray-700">
                                 <li>{personalInfo.email}</li>
                                 {socialLinks?.map((link, index) => (
-                                    <li>{link.platform}: <a className="text-blue-500 hover:underline" href={link.url}>
+                                    <li key={index}>{link.platform}: <a className="text-blue-500 hover:underline" href={link.url}>
                                         {link.url}
                                     </a></li>
                                 ))}
