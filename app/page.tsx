@@ -12,6 +12,7 @@ export default function Home() {
   const [isActive1, setIsActive1] = useState<boolean>(false);
   const [isActive2, setIsActive2] = useState<boolean>(false);
   const [isActive3, setIsActive3] = useState<boolean>(false);
+    const [activeButton, setActiveButton] = useState<string | null>(null);
   const router = useRouter();
 
   const handleFileChange = async (event: ChangeEvent<HTMLInputElement>) => {
@@ -50,6 +51,7 @@ export default function Home() {
     }
   };
 
+
   const templateselect = (value: number) => {
     settemplate(value);
   };
@@ -63,6 +65,19 @@ export default function Home() {
   const handleImageClick3 = () => {
     setIsActive3(!isActive3); // Toggle the active state
   };
+
+  const handleClick = (buttonId: string) => {
+    setActiveButton(buttonId);
+};
+  // const handleImageClick1 = () => {
+  //   setIsActive1(!isActive1); // Toggle the active state
+  // };
+  // const handleImageClick2 = () => {
+  //   setIsActive2(!isActive2); // Toggle the active state
+  // };
+  // const handleImageClick3 = () => {
+  //   setIsActive3(!isActive3); // Toggle the active state
+  // };
 
   return (
     <div className="flex flex-col justify-center items-center min-h-screen bg-gray-100 pt-10">
@@ -100,13 +115,16 @@ export default function Home() {
         {(result || loading) && (
           <pre>
             result:{" "}
-            {result ? JSON.stringify(result, undefined, 2) : "Loading...."}
+            {result ? 
+            // "JSON.stringify(result, undefined, 2)"
+            "Done"
+            : "Loading...."}
           </pre>
         )}
       </div>
       <h2 className="font-bold m-5 text-3xl ">Select the template</h2>
-      <div className="flex flex-auto gap-5">
-        <button>
+      <div className="flex  gap-5">
+        {/* <button>
           <Image
             onClick={() => {
               templateselect(1);
@@ -120,43 +138,19 @@ export default function Home() {
             width={500}
             alt="temp1"
           />
-        </button>
-        {
-          /**
-           *   <button>
-            <Image
-              onClick={() => {
-                templateselect(2);
-                handleImageClick2();
-              }}
-              src="/template1.png"
-              className={`cursor-pointer transition-transform duration-200 ${
-                isActive2 ? "transform scale-105 border-4 border-red-300" : ""
-              }`}
-              objectFit="cover"
-              height={500}
-              width={500}
-              alt="temp1"
-            />
-          </button>
-          <button>
-            <Image
-              onClick={() => {
-                templateselect(3);
-                handleImageClick3();
-              }}
-              src="/template1.png"
-              className={`cursor-pointer transition-transform duration-200 ${
-                isActive3 ? "transform scale-105 border-4 border-green-300" : ""
-              }`}
-              objectFit="cover"
-              height={500}
-              width={500}
-              alt="temp1"
-            />
-          </button>
-           */
-        }
+        </button> */}
+                    <button
+                onClick={() => {handleClick('button1')
+                  templateselect(1);
+                }}
+                className={`px-4 py-2 rounded-lg focus:outline-none transition-colors duration-300 ${
+                    activeButton === 'button1'
+                        ? 'bg-blue-500 text-white'
+                        : 'bg-blue-200 text-blue-800'
+                }`}
+            >
+                Template 1
+            </button>
       </div>
     </div>
   );

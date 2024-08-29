@@ -12,16 +12,27 @@ export async function POST(request: NextRequest) {
   try {
     const { text } = await request.json();
     const prompt = `This is a resume which is unformatted. Fix any grammatical mistakes/errors and extract all data from resume and insert corrected data into json format as below given json structure.
-{ "personalInfo": { "name": "", "phone": "", "email": "", "age": "", "location": "" },
- "academicQualifications": [ "" , // ...multiple items ],
- "professionalSummary": [ "" , // ...multiple items ],
- "professionalExperience": [ { "position": "", "institution": "", "location": "",
- "subjects": [ "" , // ...multiple items ], "level": "", "status": "", "duration": "" } ],
- "additionalResponsibilities": [ "" , // ...multiple items ],
- "professionalDevelopment": [ "" , // ...multiple items ],
- "professionalSkills": [ "" , // ...multiple items ],
- "professionalAccolades": [ "" , // ...multiple items ] }
+{ 
+ "personalInfo": { "name": "", "phone": "", "email": "", "age": "", "location": "" },
 
+ "academicQualifications": [ "" , // ...multiple items ],
+ 
+ "professionalSummary": [ "" , // ...multiple items ],
+ 
+ "professionalExperience": [ { "position": "", "company": "", "description": "","duration": "" } ],
+ 
+ "additionalResponsibilities": [ "" , // ...multiple items ],
+ 
+ 
+ "professionalSkills": [ "" , // ...multiple items ],
+ 
+ "projects:[ { name: string; url: string; description: string; date: string }],
+
+ "sociallinks":[ {platform: string; url: string}]
+
+ i want all the information in exact same format
+
+ 
  Resume content:${text} 
 
 `
