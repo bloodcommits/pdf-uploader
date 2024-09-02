@@ -12,7 +12,7 @@ export default function Home() {
   const [isActive1, setIsActive1] = useState<boolean>(false);
   const [isActive2, setIsActive2] = useState<boolean>(false);
   const [isActive3, setIsActive3] = useState<boolean>(false);
-    const [activeButton, setActiveButton] = useState<string | null>(null);
+  const [activeButton, setActiveButton] = useState<string | null>(null);
   const router = useRouter();
 
   const handleFileChange = async (event: ChangeEvent<HTMLInputElement>) => {
@@ -34,9 +34,9 @@ export default function Home() {
     const text = await PDFToText(selectedFile);
 
     try {
-      const response = await fetch("/api/upload", {
+      const response = await fetch("https://api-resume-enhancer.krida.top/auth/upload-resume", {
         method: "POST",
-        body: JSON.stringify({ text }),
+        body: JSON.stringify({ text: text }),
       });
 
       if (!response.ok) throw new Error(await response.text());
@@ -68,7 +68,7 @@ export default function Home() {
 
   const handleClick = (buttonId: string) => {
     setActiveButton(buttonId);
-};
+  };
   // const handleImageClick1 = () => {
   //   setIsActive1(!isActive1); // Toggle the active state
   // };
@@ -115,10 +115,10 @@ export default function Home() {
         {(result || loading) && (
           <pre>
             result:{" "}
-            {result ? 
-            // "JSON.stringify(result, undefined, 2)"
-            "Done"
-            : "Loading...."}
+            {result ?
+              // "JSON.stringify(result, undefined, 2)"
+              "Done"
+              : "Loading...."}
           </pre>
         )}
       </div>
@@ -139,18 +139,18 @@ export default function Home() {
             alt="temp1"
           />
         </button> */}
-                    <button
-                onClick={() => {handleClick('button1')
-                  templateselect(1);
-                }}
-                className={`px-4 py-2 rounded-lg focus:outline-none transition-colors duration-300 ${
-                    activeButton === 'button1'
-                        ? 'bg-blue-500 text-white'
-                        : 'bg-blue-200 text-blue-800'
-                }`}
-            >
-                Template 1
-            </button>
+        <button
+          onClick={() => {
+            handleClick('button1')
+            templateselect(1);
+          }}
+          className={`px-4 py-2 rounded-lg focus:outline-none transition-colors duration-300 ${activeButton === 'button1'
+            ? 'bg-blue-500 text-white'
+            : 'bg-blue-200 text-blue-800'
+            }`}
+        >
+          Template 1
+        </button>
       </div>
     </div>
   );
