@@ -15,14 +15,13 @@ export async function POST(request: NextRequest) {
 { 
  "personalInfo": { "name": "", "phone": "", "email": "", "age": "", "location": "" },
 
- "academicQualifications": [ "" , // ...multiple items ],
+ "academicQualifications": [ { InstituteName: string; description: string; duration: string } ],
  
  "professionalSummary": [ "" , // ...multiple items ],
  
  "professionalExperience": [ { "position": "", "company": "", "description": "","duration": "" } ],
  
  "additionalResponsibilities": [ "" , // ...multiple items ],
- 
  
  "professionalSkills": [ "" , // ...multiple items ],
  

@@ -8,7 +8,7 @@ export default function Home() {
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
   const [result, setResult] = useState();
   const [loading, setLoading] = useState(false);
-  const [template, settemplate] = useState<number>(1);
+  const [template, settemplate] = useState<number>(2);
   const [isActive1, setIsActive1] = useState<boolean>(false);
   const [isActive2, setIsActive2] = useState<boolean>(false);
   const [isActive3, setIsActive3] = useState<boolean>(false);
