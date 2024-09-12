@@ -2,7 +2,7 @@
 import React from 'react';
 import { Link, Text, View, StyleSheet } from '@react-pdf/renderer';
 
-const styles = StyleSheet.create({
+const headerStyles = StyleSheet.create({
     container: {
         flexDirection: 'row',
         borderBottomWidth: 2,
@@ -41,13 +41,13 @@ const styles = StyleSheet.create({
 });
 
 const Header = () => (
-    <View style={styles.container}>
-        <View style={styles.detailColumn}>
-            <Text style={styles.name}>Luke Skywalker</Text>
-            <Text style={styles.subtitle}>Jedi Master</Text>
+    <View style={headerStyles.container}>
+        <View style={headerStyles.detailColumn}>
+            <Text style={headerStyles.name}>Luke Skywalker</Text>
+            <Text style={headerStyles.subtitle}>Jedi Master</Text>
         </View>
-        <View style={styles.linkColumn}>
-            <Link href="mailto:luke@theforce.com" style={styles.link}>
+        <View style={headerStyles.linkColumn}>
+            <Link href="mailto:luke@theforce.com" style={headerStyles.link}>
                 luke@theforce.com
             </Link>
         </View>

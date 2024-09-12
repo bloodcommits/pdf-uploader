@@ -4,15 +4,15 @@ import { Text, View, StyleSheet } from '@react-pdf/renderer';
 import Title from './Title';
 import List, { Item } from './List';
 
-const styles = StyleSheet.create({
+const experienceStyles = StyleSheet.create({
     container: {
         flex: 1,
-        paddingTop: 30,
-        paddingLeft: 15,
-        '@media max-width: 400': {
-            paddingTop: 10,
-            paddingLeft: 0,
-        },
+        paddingTop: 10,
+        // paddingLeft: 15,
+        // '@media max-width: 400': {
+        //     paddingTop: 10,
+        //     paddingLeft: 0,
+        // },
     },
     entryContainer: {
         marginBottom: 10,
@@ -62,13 +62,13 @@ const styles = StyleSheet.create({
 const ExperienceEntry = ({ company, details, position, date }: any) => {
     const title = `${company} | ${position}`;
     return (
-        <View style={styles.entryContainer}>
-            <View style={styles.headerContainer}>
-                <View style={styles.leftColumn}>
-                    <Text style={styles.title}>{title}</Text>
+        <View style={experienceStyles.entryContainer}>
+            <View style={experienceStyles.headerContainer}>
+                <View style={experienceStyles.leftColumn}>
+                    <Text style={experienceStyles.title}>{title}</Text>
                 </View>
-                <View style={styles.rightColumn}>
-                    <Text style={styles.date}>{date}</Text>
+                <View style={experienceStyles.rightColumn}>
+                    <Text style={experienceStyles.date}>{date}</Text>
                 </View>
             </View>
             <List>
@@ -124,7 +124,7 @@ const experienceData = [
 ];
 
 const Experience = () => (
-    <View style={styles.container}>
+    <View style={experienceStyles.container}>
         <Title>Experience</Title>
         {experienceData.map(({ company, date, details, position }) => (
             <ExperienceEntry

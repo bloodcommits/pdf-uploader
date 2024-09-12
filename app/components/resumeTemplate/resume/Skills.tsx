@@ -4,7 +4,7 @@ import { Text, View, StyleSheet } from '@react-pdf/renderer';
 import Title from './Title';
 import List, { Item } from './List';
 
-const styles = StyleSheet.create({
+const skillsStyles = StyleSheet.create({
     title: {
         fontFamily: 'Lato Bold',
         fontSize: 11,
@@ -19,7 +19,7 @@ const styles = StyleSheet.create({
 
 const SkillEntry = ({ name, skills }: any) => (
     <View>
-        <Text style={styles.title}>{name}</Text>
+        <Text style={skillsStyles.title}>{name}</Text>
         <List>
             {skills.map((skill: any) => (
                 <Item key={skill}>{skill}</Item>

@@ -1,7 +1,7 @@
 import React from 'react';
 import { Text, StyleSheet } from '@react-pdf/renderer';
 
-const styles = StyleSheet.create({
+const titleStyles = StyleSheet.create({
     title: {
         fontFamily: 'Lato Bold',
         fontSize: 14,
@@ -10,6 +10,6 @@ const styles = StyleSheet.create({
     },
 });
 
-const Title = ({ children }: any) => <Text style={styles.title}>{children}</Text>;
+const Title = ({ children }: any) => <Text style={titleStyles.title}>{children}</Text>;
 
 export default Title;
