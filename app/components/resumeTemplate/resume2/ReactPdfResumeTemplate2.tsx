@@ -129,10 +129,11 @@ const styles = StyleSheet.create({
     paddingBottom: 3,
   },
   techSkillsContainer: {
-    display: "flex",
-    flexWrap: "wrap",
-    gap: 2,
-    justifyContent: "space-between",
+    display: 'flex',
+    flexWrap: 'wrap',
+    gap:2,
+    justifyContent: 'space-between',
+    
   },
   skillItem: {
     fontSize: 10,
@@ -184,150 +185,141 @@ const Resume = () => {
       setData(data);
     }
   }, []);
-  return (
-    <Document>
-      <Page style={styles.page}>
-        {/* Header section */}
-        <View style={styles.headerSection}>
-          <Text style={styles.name}>{data?.personalInfo.name}</Text>
-          <Text style={styles.title}>UX DESIGNER</Text>
-          <Text style={styles.contactInfo}>
-            {data?.personalInfo.location} | {data?.personalInfo.phone} |{" "}
-            {data?.personalInfo.email}{" "}
-            {data?.sociallinks.map((link, index) => (
-              <Link
-                style={{ textDecoration: "none", color: "gray" }}
-                src={link.url}
-              >
-                <Text>| {link.platform} </Text>
-              </Link>
+return(
+  
+  <Document>
+    <Page style={styles.page}>
+      {/* Header section */}
+      <View style={styles.headerSection}>
+        <Text style={styles.name}>{data?.personalInfo.name}</Text>
+        <Text style={styles.title}>UX DESIGNER</Text>
+        <Text style={styles.contactInfo}>
+          {data?.personalInfo.location} | {data?.personalInfo.phone} | {data?.personalInfo.email} {data?.sociallinks.map((link , index)=>(
+            
+            <Link style={{textDecoration:"none" , color:"gray"}} src={link.url}>
+<Text>| {link.platform} </Text>
+            </Link>
             ))}
           </Text>
         </View>
 
-        {/* Summary section */}
-        {data?.professionalSummary && data?.professionalSummary.length > 1 && (
-          <View>
-            <View style={styles.hr} />
-            <Text style={styles.sectionTitle}>SUMMARY</Text>
-            <View style={styles.hr} />
-            <Text style={styles.contentText}>{data?.professionalSummary}</Text>
-          </View>
-        )}
+      {/* Summary section */}
+      {data?.professionalSummary && data?.professionalSummary.length >1 &&(
+        <View>
+       <View style={styles.hr} />
+       <Text style={styles.sectionTitle}>SUMMARY</Text>
+      <View style={styles.hr} />
+      <Text style={styles.contentText}>
+       {data?.professionalSummary}
+      </Text>
+     </View>)}
+     
+      {/* Technical Skills section */}
+      {data?.professionalSkills && data.professionalSkills.length>1 && (
+        <View>
+        <View style={styles.hr} />
+      <Text style={styles.sectionTitle}>TECHNICAL SKILLS</Text>
+      <View style={styles.hr} />
+     
+      <View style={styles.techSkillsContainer}>
+      {(data?.professionalSkills || []).map((skills:any)=>{
+        return(
+          <Text style={styles.skillItem}>• {skills}</Text>  
+        )
+      })}
+        
+      </View>
+        </View>
+      )}
+      
 
-        {/* Technical Skills section */}
-        {data?.professionalSkills && data.professionalSkills.length > 1 && (
-          <View>
-            <View style={styles.hr} />
-            <Text style={styles.sectionTitle}>TECHNICAL SKILLS</Text>
-            <View style={styles.hr} />
+      {/* Professional Experience section */}
+      {data?.professionalExperience && data.professionalExperience.length>1 && (
+        
+      <View>
+      {/* // have to  work on this */}
+      </View>
+    
+    )}
+      <View style={styles.hr} />
+      <Text style={styles.sectionTitle}>PROFESSIONAL EXPERIENCE</Text>
+      <View style={styles.hr} />
 
-            <View style={styles.techSkillsContainer}>
-              {(data?.professionalSkills || []).map((skills: any) => {
-                return <Text style={styles.skillItem}>• {skills}</Text>;
-              })}
-            </View>
-          </View>
-        )}
-
-        {/* Professional Experience section */}
-        {data?.professionalExperience &&
-          data.professionalExperience.length > 1 && (
-            <>
-              <View style={styles.hr} />
-              <Text style={styles.sectionTitle}>PROFESSIONAL EXPERIENCE</Text>
-              <View style={styles.hr} />
-
-              {/* Experience 1 */}
-              {data?.professionalExperience.map((company: any, index) => (
-                <View style={styles.jobContainer}>
-                  <View style={styles.jobHeader}>
-                    <Text style={styles.jobTitle}>
-                      {company.company} : {company.position}
-                    </Text>
-                    <Text style={styles.jobDate}>{company.duration}</Text>
-                  </View>
-                  {/* <Text style={styles.jobPosition}>{company.position}</Text> */}
-                  <Text style={styles.listText}>• {company.description}</Text>
-                </View>
-              ))}
-            </>
-          )}
+      {/* Experience 1 */}
+      {data?.professionalExperience.map((company:any , index)=>(
+         <View style={styles.jobContainer}>
+         <View style={styles.jobHeader}>
+           <Text style={styles.jobTitle}>{company.company} : {company.position}</Text>
+           <Text style={styles.jobDate}>{company.duration}</Text>
+         </View>
+         {/* <Text style={styles.jobPosition}>{company.position}</Text> */}
+         <Text style={styles.listText}>• {company.description}</Text>
+         </View>
+      ))}
+    
 
         {/* Education section */}
         <View style={styles.hr} />
         <Text style={styles.sectionTitle}>EDUCATION</Text>
         <View style={styles.hr} />
 
-        <View style={styles.eduContainer}>
-          <Text style={styles.eduTitle}>
-            UX Industrial Basics and General Application
-          </Text>
-          <Text style={styles.eduDate}>(2016 - 2019)</Text>
-        </View>
-        <Text style={styles.listText}>
-          University of Engineering UX Cohort{"\n"}
-          <Text style={styles.eduPoints}>
-            • Major in Automotive Technology {"\n"}
-          </Text>
-          <Text style={styles.eduPoints}>
-            • Thesis on "Technological Advancements within the current
-            Mechatronics Industry"
-          </Text>
-        </Text>
+      <View style={styles.eduContainer}>
+        <Text style={styles.eduTitle}>UX Industrial Basics and General Application</Text>
+        <Text style={styles.eduDate}>(2016 - 2019)</Text>
+      </View>
+      <Text style={styles.listText}>
+        University of Engineering UX Cohort{'\n'}
+       <Text style={styles.eduPoints}>• Major in Automotive Technology {'\n'}</Text>
+        <Text style={styles.eduPoints}>• Thesis on "Technological Advancements within the current Mechatronics Industry"</Text>
+      </Text>
 
-        <View style={styles.eduContainer}>
-          <Text style={styles.eduTitle}>
-            Bachelor of Design in Process Engineering
-          </Text>
-          <Text style={styles.eduDate}>(2014 - 2016)</Text>
-        </View>
-        <Text style={styles.listText}>
-          Engineering University{"\n"}
-          Relevant coursework in Structural Design and Project Management
-        </Text>
+      <View style={styles.eduContainer}>
+        <Text style={styles.eduTitle}>Bachelor of Design in Process Engineering</Text>
+        <Text style={styles.eduDate}>(2014 - 2016)</Text>
+      </View>
+      <Text style={styles.listText}>
+        Engineering University{'\n'}
+        Relevant coursework in Structural Design and Project Management
+      </Text>
 
-        {/* Projects */}
+      {/* Projects */}
+      <View style={styles.hr} />
+      <Text style={styles.sectionTitle}>PROJECTS</Text>
+      <View style={styles.hr} />
+      {data?.projects && data.projects.length>1 &&(
+        data.projects.map((project:any)=>(
+          <View style={styles.projectContainer}>
+          <View style={styles.projectHeader}>
+            <Link style={{textDecoration:"none" , color:"black" }} src={project.url}>
+            <Text style={styles.projectTitle}>{project.name}</Text>
+            </Link>
+            <Text style={styles.projectDate}>{project.date}</Text>
+          </View>
+          <Text style={styles.listText}>• {project.description}</Text>
+          </View>
+        ))
+      )}
 
-        {data?.projects && data.projects.length > 1 && (
-          <>
-            <View style={styles.hr} />
-            <Text style={styles.sectionTitle}>PROJECTS</Text>
-            <View style={styles.hr} />
-            {data.projects.map((project: any) => (
-              <View style={styles.projectContainer}>
-                <View style={styles.projectHeader}>
-                  <Link
-                    style={{ textDecoration: "none", color: "black" }}
-                    src={project.url}
-                  >
-                    <Text style={styles.projectTitle}>{project.name}</Text>
-                  </Link>
-                  <Text style={styles.projectDate}>{project.date}</Text>
-                </View>
-                <Text style={styles.listText}>• {project.description}</Text>
-              </View>
-            ))}
-          </>
-        )}
 
-        {/* Additional Information section */}
-        {data?.additionalResponsibilities && data.additionalResponsibilities.length>1 &&(
-<>
-<View style={styles.hr} />
-        <Text style={styles.sectionTitle}>ADDITIONAL INFORMATION</Text>
-        <View style={styles.hr} />
-        
-        {data.additionalResponsibilities.map((add , index)=>(
-            <Text style={styles.additionalInfoTitle}>• {add}</Text>
-        ))}
-        </>
-        )}
-        
-      </Page>
-    </Document>
-  );
+      
+
+      {/* Additional Information section */}
+      <View style={styles.hr} />
+      <Text style={styles.sectionTitle}>ADDITIONAL INFORMATION</Text>
+      <View style={styles.hr} />
+      <Text style={styles.contentText}>
+        <Text style={styles.additionalInfoTitle}>• Languages:</Text> English, French, Mandarin{'\n'}
+        <Text style={styles.additionalInfoTitle}>• Certifications:</Text> Professional Design Engineer (PDE) License, Project Management Tech (PMT){'\n'}
+        <Text style={styles.additionalInfoTitle}>• Awards/Activities:</Text> Most Innovative Employer of the Year (2021), Overall Best Employee Division Two (2024), 
+        Onboarding Project Lead (2023)
+      </Text>
+    </Page>
+  </Document>
+)
 };
+  
+
+
 
 const ReactPdfResumeTemplate2 = () => (
   <PDFViewer width={"100%"} height={"100%"}>
