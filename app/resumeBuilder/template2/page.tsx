@@ -9,7 +9,6 @@ const StandardTemplate = () => {
   return (
     <>
       <div className="bg-gray-100 max-h-full h-svh" >
-        {/* <ResumeTemplate1 /> */}
         <NoSSR />
 
 

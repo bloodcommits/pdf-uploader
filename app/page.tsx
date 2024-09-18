@@ -8,10 +8,7 @@ export default function Home() {
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
   const [result, setResult] = useState();
   const [loading, setLoading] = useState(false);
-  const [template, settemplate] = useState<number>(2);
-  const [isActive1, setIsActive1] = useState<boolean>(false);
-  const [isActive2, setIsActive2] = useState<boolean>(false);
-  const [isActive3, setIsActive3] = useState<boolean>(false);
+  const [template, settemplate] = useState<number>(1);
   const [activeButton, setActiveButton] = useState<string | null>(null);
   const router = useRouter();
 
@@ -56,28 +53,11 @@ export default function Home() {
     settemplate(value);
   };
 
-  const handleImageClick1 = () => {
-    setIsActive1(!isActive1); // Toggle the active state
-  };
-  const handleImageClick2 = () => {
-    setIsActive2(!isActive2); // Toggle the active state
-  };
-  const handleImageClick3 = () => {
-    setIsActive3(!isActive3); // Toggle the active state
-  };
 
   const handleClick = (buttonId: string) => {
     setActiveButton(buttonId);
   };
-  // const handleImageClick1 = () => {
-  //   setIsActive1(!isActive1); // Toggle the active state
-  // };
-  // const handleImageClick2 = () => {
-  //   setIsActive2(!isActive2); // Toggle the active state
-  // };
-  // const handleImageClick3 = () => {
-  //   setIsActive3(!isActive3); // Toggle the active state
-  // };
+
 
   return (
     <div className="flex flex-col justify-center items-center min-h-screen bg-gray-100 pt-10">
@@ -94,15 +74,7 @@ export default function Home() {
               className="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 focus:outline-none"
             />
           </div>
-          {/* <div>
-            <input
-              type="text"
-              value={prompt}
-              onChange={handlePromptChange}
-              placeholder="Enter your prompt here"
-              className="block w-full p-3 text-sm text-gray-900 border border-gray-300 rounded-lg focus:ring-indigo-500 focus:border-indigo-500"
-            />
-          </div> */}
+
           <button
             type="submit"
             className="w-full bg-indigo-600 text-white py-3 rounded-lg font-semibold hover:bg-indigo-700 transition duration-300"
@@ -124,21 +96,6 @@ export default function Home() {
       </div>
       <h2 className="font-bold m-5 text-3xl ">Select the template</h2>
       <div className="flex  gap-5">
-        {/* <button>
-          <Image
-            onClick={() => {
-              templateselect(1);
-              handleImageClick1();
-            }}
-            src="/template1.png"
-            className={`cursor-pointer transition-transform duration-200 ${isActive1 ? "transform scale-105 border-4 border-blue-300" : ""
-              }`}
-            objectFit="cover"
-            height={500}
-            width={500}
-            alt="temp1"
-          />
-        </button> */}
         <button
           onClick={() => {
             handleClick('button1')
@@ -150,6 +107,30 @@ export default function Home() {
             }`}
         >
           Template 1
+        </button>
+        <button
+          onClick={() => {
+            handleClick('button2')
+            templateselect(2);
+          }}
+          className={`px-4 py-2 rounded-lg focus:outline-none transition-colors duration-300 ${activeButton === 'button2'
+            ? 'bg-blue-500 text-white'
+            : 'bg-blue-200 text-blue-800'
+            }`}
+        >
+          Template 2
+        </button>
+        <button
+          onClick={() => {
+            handleClick('button3')
+            templateselect(3);
+          }}
+          className={`px-4 py-2 rounded-lg focus:outline-none transition-colors duration-300 ${activeButton === 'button3'
+            ? 'bg-blue-500 text-white'
+            : 'bg-blue-200 text-blue-800'
+            }`}
+        >
+          Template 3
         </button>
       </div>
     </div>

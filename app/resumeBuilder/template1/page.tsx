@@ -1,8 +1,7 @@
 "use client"
 import dynamic from 'next/dynamic'
-const NoSSR = dynamic(() => import('@/app/components/resumeTemplate/resume/ReactPdfResumeTemplate'), { ssr: false })
+const NoSSR = dynamic(() => import('@/app/components/resumeTemplate/resume1/ReactPdfResumeTemplate1'), { ssr: false })
 
-import ResumeTemplate1 from "@/app/components/resumeTemplate/ResumeTemplate1"
 
 
 const StandardTemplate = () => {

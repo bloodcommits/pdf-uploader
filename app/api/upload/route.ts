@@ -27,7 +27,9 @@ export async function POST(request: NextRequest) {
  
  "projects:[ { name: string; url: string; description: string; date: string }],
 
- "sociallinks":[ {platform: string; url: string}]
+ "sociallinks":[ {platform: string; url: string}],
+
+ "roleHeDeserve": string (after parsing the text tell me what the person is applying for  )
 
  i want all the information in exact same format
 
