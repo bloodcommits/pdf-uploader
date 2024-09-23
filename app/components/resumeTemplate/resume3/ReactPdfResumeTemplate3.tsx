@@ -87,33 +87,49 @@ const styles = StyleSheet.create({
 const Resume = () => {
   const [data, setData] = useState<{
     personalInfo: {
-      name: string
-      phone: string
-      email: string
-      age: string
-      location: string
-    }
-    academicQualifications: Array<string>
-    professionalSummary: Array<string>
+      name: string;
+      phone: string;
+      email: string;
+      age: string;
+      location: string;
+    };
+    professionalSummary: Array<string>;
     professionalExperience: Array<{
-      position: string
-      company: string
-      description: string
-      duration: string
-    }>
-    additionalResponsibilities: Array<string>
-    professionalSkills: Array<string>
+      position: string;
+      company: string;
+      description: string;
+      duration: string;
+    }>;
+    additionalResponsibilities: Array<string>;
+    professionalSkills: Array<string>;
     projects: Array<{
-      name: string
-      url: string
-      description: string
-      date: string
-    }>
+      name: string;
+      url: string;
+      description: string;
+      date: string;
+    }>;
     sociallinks: Array<{
-      platform: string
-      url: string
-    }>
-  }>()
+      platform: string;
+      url: string;
+    }>;
+    
+    academicQualifications: Array<{
+      InstitutionName:string;
+      description:string;
+      duration:string;
+    }>;
+    
+    certifications: Array<{
+      nameOfCertificates:string;
+      durationOfCompletion:string;
+    }>;
+    awards: Array<{
+      nameOfAward:string;
+      duration:string;
+    }>;
+    roleCandidateDeserves:string;
+  }>();
+
 
   useEffect(() => {
     const jsondata = localStorage.getItem("data");
@@ -132,7 +148,9 @@ return(
     <View>
       <Text style={styles.header}>{data?.personalInfo.name}</Text>
       <Text style={styles.subHeader}>{data?.personalInfo.location} | {data?.personalInfo.email} | <Link style={styles.link} src="https://gmail.com">{data?.personalInfo.phone}</Link></Text>
-      <Text style={styles.subHeader}>SOFTWARE ENGINEER</Text>
+      
+      {data?.roleCandidateDeserves&& <Text style={styles.subHeader}>{data?.roleCandidateDeserves}</Text>}
+     
     </View>
 
     {/* Technical Skills */}
@@ -170,23 +188,18 @@ return(
     {/* Education */}
     <View style={styles.section}>
       <Text style={styles.sectionTitle}>Education</Text>
-      <View>
-        <View style={styles.titleRow}>
-          <Text style={styles.titleText}>Computer Science AND Business | Dandilton (Online)</Text>
-          <Text style={styles.date}>May 2021 - Nov 2021</Text>
+      {data?.academicQualifications && data.academicQualifications.length<1&& (
+        data.academicQualifications.map((academic , index)=>(
+          <View>
+
+          <View style={styles.titleRow}>
+            <Text style={styles.titleText}>Institute name{academic.InstitutionName}</Text>
+            <Text style={styles.date}>Duration {academic.duration}</Text>
+          </View>
+          <Text style={styles.contentText}>• descripption{academic.description}</Text>
         </View>
-        <Text style={styles.contentText}>• Studied Business Software planning, coordination, and efficiency</Text>
-        <Text style={styles.contentText}>• Worked with various industries on launching efficient IT Systems</Text>
-      </View>
-      <View>
-        <View style={styles.titleRow}>
-          <Text style={styles.titleText}>Chemical Engineering | Royal Clickton</Text>
-          <Text style={styles.date}>Jan 2014 - Sept 2018</Text>
-        </View>
-        <Text style={styles.contentText}>• GPA: 3.19</Text>
-        <Text style={styles.contentText}>• Minor in Process Management</Text>
-        <Text style={styles.contentText}>• Thesis in Modelling and Analysis of Process Efficiency in a Cement Plant</Text>
-      </View>
+        ))
+      )}
     </View>
 
     {/* Work Experience */}

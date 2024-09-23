@@ -78,33 +78,49 @@ const styles = StyleSheet.create({
 const Resume = () => {
   const [data, setData] = useState<{
     personalInfo: {
-      name: string
-      phone: string
-      email: string
-      age: string
-      location: string
-    }
-    academicQualifications: Array<string>
-    professionalSummary: Array<string>
+      name: string;
+      phone: string;
+      email: string;
+      age: string;
+      location: string;
+    };
+    professionalSummary: Array<string>;
     professionalExperience: Array<{
-      position: string
-      company: string
-      description: string
-      duration: string
-    }>
-    additionalResponsibilities: Array<string>
-    professionalSkills: Array<string>
+      position: string;
+      company: string;
+      description: string;
+      duration: string;
+    }>;
+    additionalResponsibilities: Array<string>;
+    professionalSkills: Array<string>;
     projects: Array<{
-      name: string
-      url: string
-      description: string
-      date: string
-    }>
+      name: string;
+      url: string;
+      description: string;
+      date: string;
+    }>;
     sociallinks: Array<{
-      platform: string
-      url: string
-    }>
-  }>()
+      platform: string;
+      url: string;
+    }>;
+    
+    academicQualifications: Array<{
+      InstitutionName:string;
+      description:string;
+      duration:string;
+    }>;
+    
+    certifications: Array<{
+      nameOfCertificates:string;
+      durationOfCompletion:string;
+    }>;
+    awards: Array<{
+      nameOfAward:string;
+      duration:string;
+    }>;
+    roleCandidateDeserves:string;
+  }>();
+
 
   useEffect(() => {
     const jsondata = localStorage.getItem("data");
@@ -185,27 +201,24 @@ return(
     <View style={styles.sectionContainer}>
       <Text style={styles.sectionTitle}>Education</Text>
       <View style={styles.sectionContent}>
+    {data?.academicQualifications && data.academicQualifications.length>1 && (
+      
+      data.academicQualifications.map((academic , index)=>(
+      
         <View style={styles.education}>
           <View style={styles.jobTitleRow}>
-            <Text style={styles.jobTitle}>Bachelor of Business Administration</Text>
-            <Text style={styles.jobDate}>Jan 2019 - Feb 2021</Text>
+            <Text style={styles.jobTitle}>institute name{academic.InstitutionName}</Text>
+            <Text style={styles.jobDate}>date{academic.duration}</Text>
           </View>
-          <Text style={styles.bulletPoint}>University of Business Excellence</Text>
-          <Text style={styles.bulletPoint}>• Major in International Business</Text>
-          <Text style={styles.bulletPoint}>• Final CGPA: 3.90</Text>
+          <Text style={styles.bulletPoint}>• acandemic description {academic.description}</Text>
         </View>
-
-        <View style={styles.education}>
-          <View style={styles.jobTitleRow}>
-            <Text style={styles.jobTitle}>Foundation in Business Administration</Text>
-            <Text style={styles.jobDate}>Jan 2018 - Dec 2018</Text>
-          </View>
-          <Text style={styles.bulletPoint}>Borcelle University</Text>
-          <Text style={styles.bulletPoint}>• Final CGPA: 3.80</Text>
-        </View>
-      </View>
+   
+      ))
+    )}
     </View>
+         </View>
 
+ 
     {/* Key Skills */}
     <View style={styles.hr} />
     <View style={styles.sectionContainer}>

@@ -14,8 +14,6 @@ export async function POST(request: NextRequest) {
     const prompt = `This is a resume which is unformatted. Fix any grammatical mistakes/errors and extract all data from resume and insert corrected data into json format as below given json structure.
 { 
  "personalInfo": { "name": "", "phone": "", "email": "", "age": "", "location": "" },
-
- "academicQualifications": [ { InstituteName: string; description: string; duration: string } ],
  
  "professionalSummary": [ "" , // ...multiple items ],
  
@@ -29,14 +27,20 @@ export async function POST(request: NextRequest) {
 
  "sociallinks":[ {platform: string; url: string}],
 
- "roleHeDeserve": string (after parsing the text tell me what the person is applying for  )
+ "academicQualifications": [ { InstituteName: string; description: string; duration: string } ],
 
- i want all the information in exact same format
+ "roleCandidateDeserve": string (after parsing the text tell me what the person is applying for  )
+
+ "certifications":[{nameOfCertificate:string , durationOfCompletion:string}]
+
+ "awards":[{nameOfCertificate:string , duration:string}] 
+
+  }
+  i want all the information in exact same format
 
  
- Resume content:${text} 
-
-`
+ Resume content:${text}
+  `
 
     const response = await processWithBedrock(prompt);
     let data = "";

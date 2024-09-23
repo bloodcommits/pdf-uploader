@@ -114,8 +114,8 @@ const styles = StyleSheet.create({
   eduTitle: {
     fontSize: 11,
     fontWeight: "bold",
-    marginBottom: 3,
-    marginTop: 3,
+    marginBottom: 1,
+    marginTop: 2,
     marginRight: 10,
   },
   eduDate: {
@@ -126,7 +126,7 @@ const styles = StyleSheet.create({
     fontSize: 10,
     marginBottom: 2,
     paddingLeft: 10, // Added padding to list items
-    paddingBottom: 3,
+    // paddingBottom: 3,
   },
   techSkillsContainer: {
     display: 'flex',
@@ -154,7 +154,6 @@ const Resume = () => {
       age: string;
       location: string;
     };
-    academicQualifications: Array<string>;
     professionalSummary: Array<string>;
     professionalExperience: Array<{
       position: string;
@@ -174,6 +173,22 @@ const Resume = () => {
       platform: string;
       url: string;
     }>;
+    
+    academicQualifications: Array<{
+      InstitutionName:string;
+      description:string;
+      duration:string;
+    }>;
+    
+    certifications: Array<{
+      nameOfCertificates:string;
+      durationOfCompletion:string;
+    }>;
+    awards: Array<{
+      nameOfAward:string;
+      duration:string;
+    }>;
+    roleCandidateDeserves:string;
   }>();
 
   useEffect(() => {
@@ -192,7 +207,7 @@ return(
       {/* Header section */}
       <View style={styles.headerSection}>
         <Text style={styles.name}>{data?.personalInfo.name}</Text>
-        <Text style={styles.title}>UX DESIGNER</Text>
+        {data?.roleCandidateDeserves&& <Text style={styles.title}>{data?.roleCandidateDeserves}</Text>}
         <Text style={styles.contactInfo}>
           {data?.personalInfo.location} | {data?.personalInfo.phone} | {data?.personalInfo.email} {data?.sociallinks.map((link , index)=>(
             
@@ -234,14 +249,10 @@ return(
       
 
       {/* Professional Experience section */}
-      {data?.professionalExperience && data.professionalExperience.length>1 && (
-        
-      <View>
-      {/* // have to  work on this */}
-      </View>
-    
-    )}
-      <View style={styles.hr} />
+      {data?.professionalExperience && data.professionalExperience.length>1 && (      
+  <>
+
+<View style={styles.hr} />
       <Text style={styles.sectionTitle}>PROFESSIONAL EXPERIENCE</Text>
       <View style={styles.hr} />
 
@@ -256,6 +267,10 @@ return(
          <Text style={styles.listText}>• {company.description}</Text>
          </View>
       ))}
+  </>
+    
+    )}
+ 
     
 
         {/* Education section */}
@@ -263,24 +278,25 @@ return(
         <Text style={styles.sectionTitle}>EDUCATION</Text>
         <View style={styles.hr} />
 
-      <View style={styles.eduContainer}>
-        <Text style={styles.eduTitle}>UX Industrial Basics and General Application</Text>
-        <Text style={styles.eduDate}>(2016 - 2019)</Text>
-      </View>
-      <Text style={styles.listText}>
-        University of Engineering UX Cohort{'\n'}
-       <Text style={styles.eduPoints}>• Major in Automotive Technology {'\n'}</Text>
-        <Text style={styles.eduPoints}>• Thesis on "Technological Advancements within the current Mechatronics Industry"</Text>
-      </Text>
 
-      <View style={styles.eduContainer}>
-        <Text style={styles.eduTitle}>Bachelor of Design in Process Engineering</Text>
-        <Text style={styles.eduDate}>(2014 - 2016)</Text>
+
+{data?.academicQualifications && data.academicQualifications.length>1&&(
+  data.academicQualifications.map((academic , index)=>(
+<>
+<View style={styles.eduContainer}>
+        <Text style={styles.eduTitle}>Institute name{academic.InstitutionName}</Text>
+        <Text style={styles.eduDate}>date{academic.duration}</Text>
       </View>
       <Text style={styles.listText}>
-        Engineering University{'\n'}
-        Relevant coursework in Structural Design and Project Management
+      • description
+        {academic.description}{'\n'}
       </Text>
+</>
+  ))
+)}
+
+
+
 
       {/* Projects */}
       <View style={styles.hr} />
@@ -308,10 +324,13 @@ return(
       <Text style={styles.sectionTitle}>ADDITIONAL INFORMATION</Text>
       <View style={styles.hr} />
       <Text style={styles.contentText}>
-        <Text style={styles.additionalInfoTitle}>• Languages:</Text> English, French, Mandarin{'\n'}
-        <Text style={styles.additionalInfoTitle}>• Certifications:</Text> Professional Design Engineer (PDE) License, Project Management Tech (PMT){'\n'}
-        <Text style={styles.additionalInfoTitle}>• Awards/Activities:</Text> Most Innovative Employer of the Year (2021), Overall Best Employee Division Two (2024), 
-        Onboarding Project Lead (2023)
+        <Text style={styles.additionalInfoTitle}>• dummyAward:</Text> 2022{'\n'}
+        {data?.awards && data.awards.length>1 &&(
+          data.awards.map((award , index)=>(
+            
+            <Text style={styles.additionalInfoTitle}>• {award.nameOfAward} : {award.duration} </Text> 
+          ))
+        )}
       </Text>
     </Page>
   </Document>
