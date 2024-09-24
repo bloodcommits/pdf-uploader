@@ -8,7 +8,7 @@ export default function Home() {
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
   const [result, setResult] = useState();
   const [loading, setLoading] = useState(false);
-  const [template, settemplate] = useState<number>(1);
+  const [template, settemplate] = useState<number>(2);
   const [activeButton, setActiveButton] = useState<string | null>(null);
   const router = useRouter();
 
@@ -30,10 +30,42 @@ export default function Home() {
     setLoading(true);
     const text = await PDFToText(selectedFile);
 
+    const prompt = `
+  This is a resume which is unformatted. Fix any grammatical mistakes/errors and extract all data from resume and insert corrected data into json format as below given json structure.
+{ 
+ "personalInfo": { "name": "", "phone": "", "email": "", "age": "", "location": "" },
+ 
+ "professionalSummary": [ "" , // ...multiple items ],
+ 
+ "professionalExperience": [ { "position": "", "company": "", "description": "","duration": "" } ],
+ 
+ "additionalResponsibilities": [ "" , // ...multiple items ],
+ 
+ "professionalSkills": [ "" , // ...multiple items ],
+ 
+ "projects:[ { name: string; url: string; description: string; date: string }],
+
+ "sociallinks":[ {platform: string; url: string}],
+
+ "academicQualifications": [ { InstituteName: string; description: string; duration: string } ],
+
+ "roleCandidateDeserve": string (after parsing the text tell me what the person is applying for  )
+
+ "certifications":[{nameOfCertificate:string , durationOfCompletion:string}]
+
+ "awards":[{nameOfCertificate:string , duration:string}] 
+
+  }
+  i want all the information in exact same format
+
+ 
+ Resume content:${text}
+  `
+
     try {
       const response = await fetch("https://api-resume-enhancer.krida.top/auth/upload-resume", {
         method: "POST",
-        body: JSON.stringify({ text: text }),
+        body: JSON.stringify({ text: prompt }),
       });
 
       if (!response.ok) throw new Error(await response.text());
@@ -41,6 +73,7 @@ export default function Home() {
       setLoading(false);
       setResult(JSON.parse(response_json?.data));
       localStorage.setItem("data", response_json?.data);
+      console.log(JSON.parse(response_json?.data))
       router.push(`/resumeBuilder/template${template}`);
     } catch (e: any) {
       setLoading(false);

@@ -74,13 +74,13 @@ const styles = StyleSheet.create({
   techSkillsContainer: {
     display: 'flex',
     flexWrap: 'wrap',
-    gap:2,
-    justifyContent: 'space-between',
+    gap:6,
+    flexDirection:"row"
     
   },
   skillItem: {
     fontSize: 10,
-    marginBottom: 5,
+    gap:5
   },
 });
 
@@ -189,14 +189,14 @@ return(
     <View style={styles.section}>
       <Text style={styles.sectionTitle}>Education</Text>
       {data?.academicQualifications && data.academicQualifications.length<1&& (
-        data.academicQualifications.map((academic , index)=>(
+        data.academicQualifications.map((academic)=>(
           <View>
 
           <View style={styles.titleRow}>
-            <Text style={styles.titleText}>Institute name{academic.InstitutionName}</Text>
-            <Text style={styles.date}>Duration {academic.duration}</Text>
+            <Text style={styles.titleText}> {academic.InstitutionName}</Text>
+            <Text style={styles.date}> {academic.duration}</Text>
           </View>
-          <Text style={styles.contentText}>• descripption{academic.description}</Text>
+          <Text style={styles.contentText}>•{academic.description}</Text>
         </View>
         ))
       )}

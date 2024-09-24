@@ -11,7 +11,8 @@ import { PdfReader } from "pdfreader";
 export async function POST(request: NextRequest) {
   try {
     const { text } = await request.json();
-    const prompt = `This is a resume which is unformatted. Fix any grammatical mistakes/errors and extract all data from resume and insert corrected data into json format as below given json structure.
+    const prompt = `
+  This is a resume which is unformatted. Fix any grammatical mistakes/errors and extract all data from resume and insert corrected data into json format as below given json structure.
 { 
  "personalInfo": { "name": "", "phone": "", "email": "", "age": "", "location": "" },
  
@@ -61,6 +62,8 @@ export async function POST(request: NextRequest) {
       }
 
     }
+
+    console.log(data.toString())
 
     return NextResponse.json({ success: true, data: data });
   } catch (error) {

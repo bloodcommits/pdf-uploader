@@ -39,6 +39,17 @@ const styles = StyleSheet.create({
     color: '#333',
     lineHeight: 1.4,
   },
+  skills:{
+    fontSize: 10,
+    width: '70%', // Content on the right (70% of the width)
+    color: '#333',
+    lineHeight: 1.4,
+    display:"flex",
+    flexDirection:"row",
+    gap:2,
+    justifyContent:"space-between",
+    flexWrap:"wrap"
+  },
   jobTitleRow: {
     display: 'flex',
     flexDirection: 'row',
@@ -143,7 +154,7 @@ return(
         {data?.personalInfo.email} | {data?.personalInfo.phone} | {data?.personalInfo.location} 
         </Text>
         <Text>  
-        <Link style={styles.link} src="https://www.reallygreatsite.com">
+        <Link style={styles.link} src="">
           {data?.personalInfo.age}
         </Link>
       </Text>
@@ -207,10 +218,10 @@ return(
       
         <View style={styles.education}>
           <View style={styles.jobTitleRow}>
-            <Text style={styles.jobTitle}>institute name{academic.InstitutionName}</Text>
-            <Text style={styles.jobDate}>date{academic.duration}</Text>
+            <Text style={styles.jobTitle}>{academic.InstitutionName}</Text>
+            <Text style={styles.jobDate}>{academic.duration}</Text>
           </View>
-          <Text style={styles.bulletPoint}>• acandemic description {academic.description}</Text>
+          <Text style={styles.bulletPoint}>• {academic.description}</Text>
         </View>
    
       ))
@@ -223,7 +234,7 @@ return(
     <View style={styles.hr} />
     <View style={styles.sectionContainer}>
       <Text style={styles.sectionTitle}>Key Skills</Text>
-      <View style={styles.sectionContent}>
+      <View style={styles.skills}>
         {data?.professionalSkills.map((skill , index)=>(
           <Text style={styles.bulletPoint}>• {skill}.</Text>
         
