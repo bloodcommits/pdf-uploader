@@ -41,7 +41,7 @@ const styles = StyleSheet.create({
     display: 'flex',
     flexDirection: 'row',
     justifyContent: 'space-between',
-    fontSize: 10,
+    flexWrap: 'wrap',
   },
   projectList: {
     marginBottom: 20,
@@ -79,8 +79,10 @@ const styles = StyleSheet.create({
     
   },
   skillItem: {
+
+    width: '30%',
     fontSize: 10,
-    gap:5
+    marginBottom: 5,
   },
 });
 
@@ -160,7 +162,7 @@ return(
       <View style={styles.techSkillsContainer}>
       {(data?.professionalSkills || []).map((skills:any)=>{
         return(
-          <Text style={styles.skillItem}>• {skills}</Text>  
+          <Text style={styles.skillItem}>{skills}</Text>  
         )
       })}
         

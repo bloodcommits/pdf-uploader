@@ -84,6 +84,18 @@ const styles = StyleSheet.create({
     borderBottom: '1.5px solid #0f4880',
     marginVertical:10
   },
+  section: {
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    flexWrap: 'wrap',
+    width: '70%', // Content on the right (70% of the width)
+  },
+  item: {
+    width: '30%',
+    fontSize: 10,
+    marginBottom: 5,
+  },
 
 });
 const Resume = () => {
@@ -234,9 +246,9 @@ return(
     <View style={styles.hr} />
     <View style={styles.sectionContainer}>
       <Text style={styles.sectionTitle}>Key Skills</Text>
-      <View style={styles.skills}>
+      <View style={styles.section}>
         {data?.professionalSkills.map((skill , index)=>(
-          <Text style={styles.bulletPoint}>• {skill}.</Text>
+          <Text style={styles.item}>{skill}.</Text>
         
         ))}
       </View>

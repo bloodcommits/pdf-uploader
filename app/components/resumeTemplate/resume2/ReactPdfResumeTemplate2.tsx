@@ -129,13 +129,13 @@ const styles = StyleSheet.create({
     // paddingBottom: 3,
   },
   techSkillsContainer: {
-    display: "flex",
-    flexDirection: "row",
-    flexWrap: "wrap",
-    gap: 2,
-    justifyContent: "space-between",
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    flexWrap: 'wrap',
   },
   skillItem: {
+    width: '30%',
     fontSize: 10,
     marginBottom: 5,
   },
@@ -240,7 +240,7 @@ const Resume = () => {
 
             <View style={styles.techSkillsContainer}>
               {(data?.professionalSkills || []).map((skills: any) => {
-                return <Text style={styles.skillItem}>• {skills}</Text>;
+                return <Text style={styles.skillItem}>{skills}</Text>;
               })}
             </View>
           </View>
