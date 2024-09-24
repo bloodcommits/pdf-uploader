@@ -41,7 +41,7 @@ export default function Home() {
  
  "additionalResponsibilities": [ "" , // ...multiple items ],
  
- "professionalSkills": [ "" , // ...multiple items ],
+ "professionalSkills": [ "" , // ...multiple items just get skill in a singlel word do not use brakets and expalian it   ],
  
  "projects:[ { name: string; url: string; description: string; date: string }],
 
