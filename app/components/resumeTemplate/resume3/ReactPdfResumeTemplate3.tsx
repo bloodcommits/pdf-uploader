@@ -162,7 +162,7 @@ return(
       <View style={styles.techSkillsContainer}>
       {(data?.professionalSkills || []).map((skills:any)=>{
         return(
-          <Text style={styles.skillItem}>{skills}</Text>  
+          <Text style={styles.skillItem}>• {skills}</Text>  
         )
       })}
         
