@@ -63,7 +63,7 @@ export default function Home() {
  
  Resume content:${text}
   `
-
+    //
     try {
       const response = await fetch("https://api-resume-enhancer.krida.top/auth/upload-resume", {
         method: "POST",
