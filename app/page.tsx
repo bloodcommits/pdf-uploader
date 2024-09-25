@@ -41,7 +41,7 @@ export default function Home() {
  
  "additionalResponsibilities": [ "" , // ...multiple items ],
  
- "professionalSkills": [ "" , // ...multiple items just get skill in a singlel word do not use brakets and expalian it   ],
+ "professionalSkills": [ "" , // ...multiple items just get skill in a single word do not use brakets to explain it , try to make some point  by yourself after parsing the resume text and that has to be sophesticated   ],
  
  "projects:[ { name: string; url: string; description: string; date: string }],
 
@@ -49,11 +49,13 @@ export default function Home() {
 
  "academicQualifications": [ { InstituteName: string; description: string; duration: string } ],
 
- "roleCandidateDeserve": string (after parsing the text tell me what the person is applying for  )
+ "roleCandidateDeserve": string (after parsing the text tell me what the person is applying for . it shoul not be more than 2 words )
 
  "certifications":[{nameOfCertificate:string , durationOfCompletion:string}]
 
  "awards":[{nameOfCertificate:string , duration:string}] 
+
+ "Languages":[string array of langauges know ]
 
   }
   i want all the information in exact same format

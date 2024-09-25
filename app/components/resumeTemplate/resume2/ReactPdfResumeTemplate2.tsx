@@ -8,6 +8,7 @@ import {
   PDFViewer,
   Link,
 } from "@react-pdf/renderer";
+import { fontWeight } from "html2canvas/dist/types/css/property-descriptors/font-weight";
 
 // Define styles to match the resume with colors, lines, and layout
 // Define styles
@@ -42,7 +43,7 @@ const styles = StyleSheet.create({
   },
   contentText: {
     fontSize: 10,
-    marginBottom: 10,
+    marginBottom: 5,
     lineHeight: 1.3,
   },
   hr: {
@@ -108,8 +109,8 @@ const styles = StyleSheet.create({
     display: "flex",
     flexDirection: "row",
     justifyContent: "space-between",
-    marginBottom: 5,
-    paddingBottom: 5, // Added padding to education container
+    marginVertical: 5,
+    // paddingBottom: 5, // Added padding to education container
   },
   eduTitle: {
     fontSize: 11,
@@ -129,19 +130,23 @@ const styles = StyleSheet.create({
     // paddingBottom: 3,
   },
   techSkillsContainer: {
-    display: 'flex',
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    flexWrap: 'wrap',
+    display: "flex",
+    flexDirection: "row",
+    justifyContent: "space-between",
+    flexWrap: "wrap",
   },
   skillItem: {
-    width: '30%',
+    width: "30%",
     fontSize: 10,
     marginBottom: 5,
   },
   additionalInfoTitle: {
     fontSize: 10,
     fontWeight: "bold",
+  },
+  lang:{
+    fontWeight:"extrabold",
+    fontSize:11,
   },
 });
 
@@ -175,20 +180,22 @@ const Resume = () => {
     }>;
 
     academicQualifications: Array<{
-      InstitutionName: string;
+      InstituteName: string;
       description: string;
       duration: string;
     }>;
 
     certifications: Array<{
-      nameOfCertificates: string;
+      nameOfCertificate: string;
       durationOfCompletion: string;
     }>;
     awards: Array<{
       nameOfAward: string;
       duration: string;
     }>;
-    roleCandidateDeserves: string;
+    roleCandidateDeserve: string;
+
+    Languages:Array<string>;
   }>();
 
   useEffect(() => {
@@ -206,7 +213,7 @@ const Resume = () => {
         {/* Header section */}
         <View style={styles.headerSection}>
           <Text style={styles.name}>{data?.personalInfo.name}</Text>
-          <Text style={styles.title}>{data?.roleCandidateDeserves}</Text>
+          <Text style={styles.title}>{data?.roleCandidateDeserve}</Text>
           <Text style={styles.contactInfo}>
             {data?.personalInfo.location} | {data?.personalInfo.phone} |{" "}
             {data?.personalInfo.email}{" "}
@@ -222,7 +229,7 @@ const Resume = () => {
         </View>
 
         {/* Summary section */}
-        {data?.professionalSummary && data?.professionalSummary.length > 1 && (
+        {data?.professionalSummary && data?.professionalSummary.length > 0 && (
           <View>
             <View style={styles.hr} />
             <Text style={styles.sectionTitle}>SUMMARY</Text>
@@ -232,7 +239,7 @@ const Resume = () => {
         )}
 
         {/* Technical Skills section */}
-        {data?.professionalSkills && data.professionalSkills.length > 1 && (
+        {data?.professionalSkills && data.professionalSkills.length > 0 && (
           <View>
             <View style={styles.hr} />
             <Text style={styles.sectionTitle}>TECHNICAL SKILLS</Text>
@@ -248,7 +255,7 @@ const Resume = () => {
 
         {/* Professional Experience section */}
         {data?.professionalExperience &&
-          data.professionalExperience.length > 1 && (
+          data.professionalExperience.length > 0 && (
             <>
               <View style={styles.hr} />
               <Text style={styles.sectionTitle}>PROFESSIONAL EXPERIENCE</Text>
@@ -264,71 +271,93 @@ const Resume = () => {
                     <Text style={styles.jobDate}>{company.duration}</Text>
                   </View>
                   {/* <Text style={styles.jobPosition}>{company.position}</Text> */}
-                  <Text style={styles.listText}>• {company.description}</Text>
+                  <Text style={styles.listText}>
+                    {company.description ? <>• {company.description}</> : ""}
+                  </Text>
                 </View>
               ))}
             </>
           )}
 
         {/* Education section */}
-        <View style={styles.hr} />
-        <Text style={styles.sectionTitle}>EDUCATION</Text>
-        <View style={styles.hr} />
-
         {data?.academicQualifications &&
-          data.academicQualifications.length > 1 &&
-          data.academicQualifications.map((academic, index) => (
+          data.academicQualifications.length > 0 && (
             <>
-              <View style={styles.eduContainer}>
-                <Text style={styles.eduTitle}> {academic.InstitutionName}</Text>
-                <Text style={styles.eduDate}>{academic.duration}</Text>
-              </View>
-              <Text style={styles.listText}>
-                {academic.description}
-                {"\n"}
-              </Text>
+              <View style={styles.hr} />
+              <Text style={styles.sectionTitle}>EDUCATION</Text>
+              <View style={styles.hr} />
+              {data.academicQualifications.map((academic, index) => (
+                <>
+                  <View style={styles.eduContainer}>
+                    <Text style={styles.eduTitle}>{academic.InstituteName}</Text>
+                    <Text style={styles.eduDate}>{academic.duration}</Text>
+                  </View>
+                  <Text style={styles.listText}>{academic.description}</Text>
+                </>
+              ))}
             </>
-          ))}
+          )}
 
-        {/* Projects */}
-        <View style={styles.hr} />
-        <Text style={styles.sectionTitle}>PROJECTS</Text>
-        <View style={styles.hr} />
-        {data?.projects &&
-          data.projects.length > 1 &&
-          data.projects.map((project: any) => (
-            <View style={styles.projectContainer}>
-              <View style={styles.projectHeader}>
-                <Link
-                  style={{ textDecoration: "none", color: "black" }}
-                  src={project.url}
-                >
-                  <Text style={styles.projectTitle}>{project.name}</Text>
-                </Link>
-                <Text style={styles.projectDate}>{project.date}</Text>
+        {data?.projects && data.projects.length > 0 && (
+          <>
+            {/* Projects */}
+            <View style={styles.hr} />
+            <Text style={styles.sectionTitle}>PROJECTS</Text>
+            <View style={styles.hr} />
+            {data.projects.map((project: any) => (
+              <View style={styles.projectContainer}>
+                <View style={styles.projectHeader}>
+                  <Link
+                    style={{ textDecoration: "none", color: "black" }}
+                    src={project.url}
+                  >
+                    <Text style={styles.projectTitle}>{project.name}</Text>
+                  </Link>
+                  <Text style={styles.projectDate}>{project.date}</Text>
+                </View>
+                <Text style={styles.listText}>• {project.description}</Text>
               </View>
-              <Text style={styles.listText}>• {project.description}</Text>
-            </View>
-          ))}
+            ))}
+          </>
+        )}
 
         {/* Additional Information section */}
 
-          {/* <Text style={styles.additionalInfoTitle}>• dummyAward:</Text> 2022{'\n'} */}
-          {data?.awards && data.awards.length > 1 && (
-            <>
-              <View style={styles.hr} />
-              <Text style={styles.sectionTitle}>ADDITIONAL INFORMATION</Text>
-              <View style={styles.hr} />
-              <Text style={styles.contentText}>
-                {data.awards.map((award, index) => (
-                  <Text style={styles.additionalInfoTitle}>
-                    • {award.nameOfAward} : {award.duration}{" "}
-                  </Text>
-                ))}
-              </Text>
-            </>
-          )}
-        
+        {data?.certifications && data.certifications.length > 0 && (
+          <>
+            <View style={styles.hr} />
+            <Text style={styles.sectionTitle}>ADDITIONAL INFORMATION</Text>
+            <View style={styles.hr} />
+            <Text style={styles.contentText}>
+              {data.Languages.length>0 && (
+                <>
+              <Text style={styles.lang} >langauges :</Text>
+              
+                {
+                  data.Languages.map((lang , index)=>(
+                    <Text> {lang} </Text>
+                    
+                  ))}
+                  </>
+
+              )}
+            </Text>
+            <Text style={styles.contentText}>
+              {data.certifications.length>0 && (
+                <>
+              <Text style={styles.lang} >Certifications :</Text>
+              
+                {
+                  data.certifications.map((certificate , index)=>(
+                    <Text> {certificate.nameOfCertificate} </Text>
+                    
+                  ))}
+                  </>
+
+              )}
+            </Text>
+          </>
+        )}
       </Page>
     </Document>
   );
