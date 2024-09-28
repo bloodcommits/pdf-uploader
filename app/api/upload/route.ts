@@ -14,7 +14,7 @@ export async function POST(request: NextRequest) {
     const prompt = `
   This is a resume which is unformatted. Fix any grammatical mistakes/errors and extract all data from resume and insert corrected data into json format as below given json structure.
 { 
- "personalInfo": { "name": "", "phone": "", "email": "", "age": "", "location": "" },
+ "personalInfo": { "name": "", "phone": "", "email": "", "age": "", "location": ""(only give the state) },
  
  "professionalSummary": [ "" , // ...multiple items ],
  

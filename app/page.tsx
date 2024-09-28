@@ -47,7 +47,7 @@ export default function Home() {
 
  "sociallinks":[ {platform: string; url: string}],
 
- "academicQualifications": [ { InstituteName: string; description: string(if the user do not have alot of description generate some descriptions max 2 lines ); duration: string } ],
+ "academicQualifications": [ { InstituteName: string; description: string(if they have less description then generate some ); duration: string } ],
 
  "roleCandidateDeserve": string (after parsing the text tell me what the person is applying for . it shoul not be more than 2 words )
 
@@ -58,7 +58,9 @@ export default function Home() {
  "Languages":[string array of langauges know ]
 
   }
-  i want all the information in exact same format , do not use any word in any duration i want all duraration to be in date format only not wordslike pursuing or complated
+  i want all the information in exact same format ,
+  
+  // all the duration in this template should have year of starting and year of completion if not then it should have month of start and year of start if only year is present the month will be jan by default   
 
 
  

@@ -27,7 +27,7 @@ const styles = StyleSheet.create({
     padding: 5,
   },
   section: {
-    marginBottom: 10,
+    marginVertical: 3
   },
   contentText: {
     fontSize: 10,
@@ -35,7 +35,8 @@ const styles = StyleSheet.create({
     lineHeight: 1.5,
   },
   technicalSkills: {
-    marginBottom: 20,
+    
+    marginVertical: 3,
   },
   skillList: {
     display: 'flex',
@@ -44,7 +45,7 @@ const styles = StyleSheet.create({
     flexWrap: 'wrap',
   },
   projectList: {
-    marginBottom: 20,
+    marginVertical: 3,
   },
   project: {
     marginBottom: 10,
@@ -53,7 +54,7 @@ const styles = StyleSheet.create({
     display: 'flex',
     flexDirection: 'row',
     justifyContent: 'space-between',
-    marginBottom: 2,
+    marginVertical: 2,
   },
   titleText: {
     fontWeight: 'bold',
@@ -65,7 +66,8 @@ const styles = StyleSheet.create({
     fontStyle: 'italic',
   },
   awardList: {
-    marginTop: 10,
+    marginVertical: 3
+
   },
   link: {
     color: 'black', // Standard blue for link
@@ -239,7 +241,14 @@ const Resume = () => {
           <View style={styles.awardList}>
             <Text style={styles.sectionTitle}>Awards & Achievements</Text>
             {data.awards.map((award, index) => (
-              <Text style={styles.contentText}>• {award.nameOfCertificate} {award.duration}</Text>
+              <View style={styles.titleRow}>
+                <Text style={styles.contentText}>• {award.nameOfCertificate} 
+                  
+                  </Text>
+                  <Text style={styles.date}  >
+                    {award.duration}</Text>
+              </View>
+                
             ))}
           </View>
         )}
