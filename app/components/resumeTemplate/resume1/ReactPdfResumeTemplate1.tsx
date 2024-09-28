@@ -199,10 +199,14 @@ const Resume = () => {
                 {
                   data.professionalExperience.map((exp, index) => (
 
-                    <View style={{ ...styles.workExperience, width: "100%", }}>
+                    <View style={{ ...styles.workExperience, }}>
                       <View style={{ ...styles.jobTitleRow, width: "100%", justifyContent: "space-between" }}>
-                        <Text style={{ ...styles.jobTitle, width: "70%", alignItems: "center" }}>{exp.company}, {exp.position}</Text>
-                        <Text style={{ ...styles.jobDate, width: "30%", display: "flex", flexDirection: "row", justifyContent: "flex-end" }}>{exp.duration}</Text>
+                        <View style={{ width: "70%", display: "flex", flexDirection: 'row', }} >
+                          <Text style={{ ...styles.jobTitle, }}>{exp.company}, {exp.position}</Text>
+                        </View>
+                        <View style={{ width: "30%", display: "flex", flexDirection: "row", justifyContent: "flex-end", }} >
+                          <Text style={{ ...styles.jobDate, }}>{exp.duration}</Text>
+                        </View>
                       </View>
                       {exp.description ?
 
