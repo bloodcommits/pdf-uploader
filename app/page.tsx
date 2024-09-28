@@ -47,7 +47,7 @@ export default function Home() {
 
  "sociallinks":[ {platform: string; url: string}],
 
- "academicQualifications": [ { InstituteName: string; description: string; duration: string } ],
+ "academicQualifications": [ { InstituteName: string; description: string(if the user do not have alot of description generate some descriptions max 2 lines ); duration: string } ],
 
  "roleCandidateDeserve": string (after parsing the text tell me what the person is applying for . it shoul not be more than 2 words )
 
@@ -58,7 +58,8 @@ export default function Home() {
  "Languages":[string array of langauges know ]
 
   }
-  i want all the information in exact same format
+  i want all the information in exact same format , do not use any word in any duration i want all duraration to be in date format only not wordslike pursuing or complated
+
 
  
  Resume content:${text}

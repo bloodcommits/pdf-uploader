@@ -15,7 +15,7 @@ const styles = StyleSheet.create({
   subHeader: {
     textAlign: 'center',
     fontSize: 12,
-    marginBottom: 20,
+    marginBottom: 10,
     color: 'black',
   },
   sectionTitle: {
@@ -84,6 +84,9 @@ const styles = StyleSheet.create({
     fontSize: 10,
     marginBottom: 5,
   },
+  experinceblock:{
+    marginVertical:2.5
+  },
 });
 
 const Resume = () => {
@@ -102,7 +105,6 @@ const Resume = () => {
       description: string;
       duration: string;
     }>;
-    additionalResponsibilities: Array<string>;
     professionalSkills: Array<string>;
     projects: Array<{
       name: string;
@@ -116,7 +118,7 @@ const Resume = () => {
     }>;
     
     academicQualifications: Array<{
-      InstitutionName:string;
+      InstituteName:string;
       description:string;
       duration:string;
     }>;
@@ -126,10 +128,10 @@ const Resume = () => {
       durationOfCompletion:string;
     }>;
     awards: Array<{
-      nameOfAward:string;
-      duration:string;
+      nameOfCertificate:string,
+      duration:string
     }>;
-    roleCandidateDeserves:string;
+    roleCandidateDeserve:string;
   }>();
 
 
@@ -151,12 +153,12 @@ return(
       <Text style={styles.header}>{data?.personalInfo.name}</Text>
       <Text style={styles.subHeader}>{data?.personalInfo.location} | {data?.personalInfo.email} | <Link style={styles.link} src="https://gmail.com">{data?.personalInfo.phone}</Link></Text>
       
-      {data?.roleCandidateDeserves&& <Text style={styles.subHeader}>{data?.roleCandidateDeserves}</Text>}
+      {data?.roleCandidateDeserve&& <Text style={styles.subHeader}>{data?.roleCandidateDeserve}</Text>}
      
     </View>
 
     {/* Technical Skills */}
-    {data?.professionalSkills && data.professionalSkills.length>1 && (
+    {data?.professionalSkills && data.professionalSkills.length>0 && (
     <View style={styles.technicalSkills}>
       <Text style={styles.sectionTitle}>Technical Skills</Text>
       <View style={styles.techSkillsContainer}>
@@ -172,7 +174,7 @@ return(
       )}
 
     {/* Projects */}
-    {data?.projects&&data.projects.length>1&&(
+    {data?.projects&&data.projects.length>0&&(
     <View style={styles.projectList}>
       <Text style={styles.sectionTitle}>Projects</Text>
      {data.projects.map((project , index)=>(
@@ -188,44 +190,56 @@ return(
     )}
 
     {/* Education */}
-    <View style={styles.section}>
-      <Text style={styles.sectionTitle}>Education</Text>
-      {data?.academicQualifications && data.academicQualifications.length<1&& (
-        data.academicQualifications.map((academic)=>(
+  
+      {data?.academicQualifications && data.academicQualifications.length>0 && (
+<>
+<View style={styles.section}>
+<Text style={styles.sectionTitle}>Education</Text>
+{        data.academicQualifications.map((academic)=>(
           <View>
 
           <View style={styles.titleRow}>
-            <Text style={styles.titleText}> {academic.InstitutionName}</Text>
+            <Text style={styles.titleText}> {academic.InstituteName}</Text>
             <Text style={styles.date}> {academic.duration}</Text>
           </View>
-          <Text style={styles.contentText}>•{academic.description}</Text>
+          <Text style={styles.contentText}>• {academic.description}</Text>
         </View>
         ))
-      )}
-    </View>
+
+}
+
+</View>
+</>
+)
+      
+      }
 
     {/* Work Experience */}
-    {data?.professionalExperience && data.professionalExperience.length>1&&(
+    {data?.professionalExperience && data.professionalExperience.length>0&&(
     <View style={styles.section}>
       <Text style={styles.sectionTitle}>Work Experience</Text>
       {data.professionalExperience.map((exp , index)=>(
-      <View>
+      <View style={styles.experinceblock}>
         <View style={styles.titleRow}>
           <Text style={styles.titleText}>{exp.company} | {exp.position}</Text>
           <Text style={styles.date}>{exp.duration}</Text>
         </View>
-        <Text style={styles.contentText}>• {exp.description}</Text>
+        {
+          exp.description&&(
+            <Text style={styles.contentText}> {`• ${exp.description}`}</Text>
+          )
+        }
       </View>
       ))}
     </View>
     )}
 
     {/* Awards & Achievements */}
-    {data?.additionalResponsibilities && data.additionalResponsibilities.length>1 &&(
+    {data?.awards && data.awards.length>0 &&(
     <View style={styles.awardList}>
     <Text style={styles.sectionTitle}>Awards & Achievements</Text>
-    {data.additionalResponsibilities.map((additional , index)=>(
-    <Text style={styles.contentText}>• {additional}</Text>
+    {data.awards.map((award , index)=>(
+    <Text style={styles.contentText}>• {award.nameOfCertificate} {award.duration}</Text>
     ))}
   </View>
     )}
