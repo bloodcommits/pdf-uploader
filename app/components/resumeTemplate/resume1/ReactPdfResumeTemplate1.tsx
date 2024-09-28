@@ -5,17 +5,18 @@ import { Page, Text, View, Document, StyleSheet, PDFViewer, Link } from '@react-
 const styles = StyleSheet.create({
   page: {
     padding: 40,
-    color: '#333',
+    color: 'black',
   },
   header: {
     fontSize: 24,
     fontWeight: 'bold',
     color: '#0f4880', // Dark blue header color
+    // marginBottom:5
   },
   contactInfo: {
     fontSize: 10,
-    color: '#666',
-    marginBottom: 10,
+    color: 'black',
+    marginTop: 5,
   },
   line: {
     borderBottom: '2px solid #0f4880',
@@ -31,18 +32,18 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     color: '#0f4880',
     textTransform: 'uppercase',
-    width: '30%', // Title on the left (30% of the width)
+    width: '25%', // Title on the left (30% of the width)
   },
   sectionContent: {
     fontSize: 10,
-    width: '70%', // Content on the right (70% of the width)
-    color: '#333',
+    width: '75%', // Content on the right (70% of the width)
+    color: 'black',
     lineHeight: 1.4,
   },
   skills: {
     fontSize: 10,
     width: '70%', // Content on the right (70% of the width)
-    color: '#333',
+    color: 'black',
     lineHeight: 1.4,
     display: "flex",
     flexDirection: "row",
@@ -58,12 +59,12 @@ const styles = StyleSheet.create({
   },
   jobTitle: {
     fontWeight: "extrabold",
-    color: '#333',
-    fontSize: 12
+    color: 'black',
+    fontSize: 11
   },
   jobDate: {
     fontSize: 10,
-    color: "black",
+    color:  'black',
   },
   bulletPoint: {
     marginLeft: 10,
@@ -156,6 +157,9 @@ const Resume = () => {
 
     }
   }, []);
+  const fliterresult = data?.professionalSkills.filter((word) => word.length<25);
+  console.log(fliterresult)
+
   return (
 
     <Document>
@@ -166,14 +170,9 @@ const Resume = () => {
           <Text style={styles.contactInfo}>
             {data?.personalInfo.email} | {data?.personalInfo.phone} | {data?.personalInfo.location}
           </Text>
-          <Text>
-            <Link style={styles.link} src="">
-              {data?.personalInfo.age}
-            </Link>
-          </Text>
         </View>
 
-        {/* Line Break */}
+
 
 
         {/* Summary */}
@@ -202,7 +201,7 @@ const Resume = () => {
                     <View style={{ ...styles.workExperience, }}>
                       <View style={{ ...styles.jobTitleRow, width: "100%", justifyContent: "space-between" }}>
                         <View style={{ width: "70%", display: "flex", flexDirection: 'row', }} >
-                          <Text style={{ ...styles.jobTitle, }}>{exp.company}, {exp.position}</Text>
+                          <Text style={{ ...styles.jobTitle, }}>{exp.position}, {exp.company}</Text>
                         </View>
                         <View style={{ width: "30%", display: "flex", flexDirection: "row", justifyContent: "flex-end", }} >
                           <Text style={{ ...styles.jobDate, }}>{exp.duration}</Text>
@@ -264,9 +263,13 @@ const Resume = () => {
         <View style={styles.sectionContainer}>
           <Text style={styles.sectionTitle}>Key Skills</Text>
           <View style={styles.section}>
-            {data?.professionalSkills.map((skill, index) => (
+            {
+            
+            fliterresult?.map((skill, index) => (
               <Text style={styles.item}>{skill}</Text>
-            ))}
+            ))
+            
+            }
           </View>
         </View>
       </Page>

@@ -37,7 +37,7 @@ export default function Home() {
  
  "professionalSummary": [ "" , // ...multiple items ],
  
- "professionalExperience": [ { "position": "", "company": "", "description": "","duration": "" } ],
+ "professionalExperience": [ { "position": ""(position shoul not be greater than of 2 words), "company": "", "description": "","duration": "" } ],
  
  "additionalResponsibilities": [ "" , // ...multiple items ],
  
@@ -60,7 +60,7 @@ export default function Home() {
   }
   i want all the information in exact same format ,
   
-  // all the duration in this template should have year of starting and year of completion if not then it should have month of start and year of start if only year is present the month will be jan by default   
+  // get the date in format like 2021 - 2025 or in Jan 2019 - Dec 2019 but maintain consistency 
 
 
  

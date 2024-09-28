@@ -18,22 +18,23 @@ const styles = StyleSheet.create({
     fontFamily: "Helvetica",
   },
   headerSection: {
-    marginBottom: 10,
+    marginBottom: 2,
   },
   name: {
     fontSize: 24,
     color: "#1a73e8",
     fontWeight: "bold",
+    marginVertical: 2,
   },
   title: {
     fontSize: 12,
-    marginTop: 4,
+ 
     fontWeight: "bold",
     color: "black",
   },
   contactInfo: {
     fontSize: 10,
-    marginTop: 5,
+    marginTop:2 ,
     color: "gray",
   },
   sectionTitle: {
@@ -273,7 +274,7 @@ const Resume = () => {
                   </View>
                   {/* <Text style={styles.jobPosition}>{company.position}</Text> */}
                   <Text style={styles.listText}>
-                    {company.description ? <>• {company.description}</> : ""}
+                    {company.description ? <>{company.description}</> : ""}
                   </Text>
                 </View>
               ))}
