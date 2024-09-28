@@ -39,16 +39,16 @@ const styles = StyleSheet.create({
     color: '#333',
     lineHeight: 1.4,
   },
-  skills:{
+  skills: {
     fontSize: 10,
     width: '70%', // Content on the right (70% of the width)
     color: '#333',
     lineHeight: 1.4,
-    display:"flex",
-    flexDirection:"row",
-    gap:2,
-    justifyContent:"space-between",
-    flexWrap:"wrap"
+    display: "flex",
+    flexDirection: "row",
+    gap: 2,
+    justifyContent: "space-between",
+    flexWrap: "wrap"
   },
   jobTitleRow: {
     display: 'flex',
@@ -59,7 +59,7 @@ const styles = StyleSheet.create({
   jobTitle: {
     fontWeight: "extrabold",
     color: '#333',
-    fontSize:12
+    fontSize: 12
   },
   jobDate: {
     fontSize: 10,
@@ -80,9 +80,9 @@ const styles = StyleSheet.create({
   education: {
     marginBottom: 12, // Margin between different education entries
   },
-  hr:{
+  hr: {
     borderBottom: '1.5px solid #0f4880',
-    marginVertical:10
+    marginVertical: 10
   },
   section: {
     display: 'flex',
@@ -126,22 +126,23 @@ const Resume = () => {
       platform: string;
       url: string;
     }>;
-    
+
     academicQualifications: Array<{
-      InstitutionName:string;
-      description:string;
-      duration:string;
+      InstitutionName: string;
+      InstituteName: string;
+      description: string;
+      duration: string;
     }>;
-    
+
     certifications: Array<{
-      nameOfCertificates:string;
-      durationOfCompletion:string;
+      nameOfCertificates: string;
+      durationOfCompletion: string;
     }>;
     awards: Array<{
-      nameOfAward:string;
-      duration:string;
+      nameOfAward: string;
+      duration: string;
     }>;
-    roleCandidateDeserves:string;
+    roleCandidateDeserves: string;
   }>();
 
 
@@ -155,116 +156,128 @@ const Resume = () => {
 
     }
   }, []);
-return(
-  
-  <Document>
-  <Page size="A4" style={styles.page}>
-    {/* Header */}
-    <View>
-      <Text style={styles.header}>{data?.personalInfo.name}</Text>
-      <Text style={styles.contactInfo}>
-        {data?.personalInfo.email} | {data?.personalInfo.phone} | {data?.personalInfo.location} 
-        </Text>
-        <Text>  
-        <Link style={styles.link} src="">
-          {data?.personalInfo.age}
-        </Link>
-      </Text>
-    </View>
+  return (
 
-    {/* Line Break */}
-
-
-    {/* Summary */}
-    {data?.professionalSummary&&data?.professionalSummary.length>1 &&(
-      <>
-          <View style={styles.line}></View>
-      <View style={styles.sectionContainer}>
-        <Text style={styles.sectionTitle}>Summary</Text>
-        <Text style={styles.sectionContent}>
-          {data.professionalSummary}
-        </Text>
-      </View>
-      </>
-)}
-
-    {/* Work Experience */}
-  {  data?.professionalExperience && data.professionalExperience.length>1 &&(
-    <>
-    <View style={styles.hr} />
-    <View style={styles.sectionContainer}>
-    <Text style={styles.sectionTitle}>Work Experience</Text>
-    <View style={styles.sectionContent}>
-    {
-      data.professionalExperience.map((exp , index)=>(
-       
-                <View style={styles.workExperience}>
-                  <View style={styles.jobTitleRow}>
-                    <Text style={styles.jobTitle}>{exp.company}, {exp.position}</Text>
-                    <Text style={styles.jobDate}>{exp.duration}</Text>
-                  </View>
-                  <Text style={styles.bulletPoint}>• {exp.description}</Text>
-                </View>
-        
-                
-        
-                ))
-    }
-    
-    </View>
-  </View>
-    </>
-
-  )}
-
-
-
-    {/* Education */}
-    <View style={styles.hr} />
-    <View style={styles.sectionContainer}>
-      <Text style={styles.sectionTitle}>Education</Text>
-      <View style={styles.sectionContent}>
-    {data?.academicQualifications && data.academicQualifications.length>1 && (
-      
-      data.academicQualifications.map((academic , index)=>(
-      
-        <View style={styles.education}>
-          <View style={styles.jobTitleRow}>
-            <Text style={styles.jobTitle}>{academic.InstitutionName}</Text>
-            <Text style={styles.jobDate}>{academic.duration}</Text>
-          </View>
-          <Text style={styles.bulletPoint}>• {academic.description}</Text>
+    <Document>
+      <Page size="A4" style={styles.page}>
+        {/* Header */}
+        <View>
+          <Text style={styles.header}>{data?.personalInfo.name}</Text>
+          <Text style={styles.contactInfo}>
+            {data?.personalInfo.email} | {data?.personalInfo.phone} | {data?.personalInfo.location}
+          </Text>
+          <Text>
+            <Link style={styles.link} src="">
+              {data?.personalInfo.age}
+            </Link>
+          </Text>
         </View>
-   
-      ))
-    )}
-    </View>
-         </View>
 
- 
-    {/* Key Skills */}
-    <View style={styles.hr} />
-    <View style={styles.sectionContainer}>
-      <Text style={styles.sectionTitle}>Key Skills</Text>
-      <View style={styles.section}>
-        {data?.professionalSkills.map((skill , index)=>(
-          <Text style={styles.item}>{skill}.</Text>
-        
-        ))}
-      </View>
-    </View>
-  </Page>
-</Document>
-)
+        {/* Line Break */}
+
+
+        {/* Summary */}
+        {data?.professionalSummary && data?.professionalSummary.length > 1 && (
+          <>
+            <View style={styles.line}></View>
+            <View style={styles.sectionContainer}>
+              <Text style={styles.sectionTitle}>Summary</Text>
+              <Text style={styles.sectionContent}>
+                {data.professionalSummary}
+              </Text>
+            </View>
+          </>
+        )}
+
+        {/* Work Experience */}
+        {data?.professionalExperience && data.professionalExperience.length > 1 && (
+          <>
+            <View style={styles.hr} />
+            <View style={styles.sectionContainer}>
+              <Text style={styles.sectionTitle}>Work Experience</Text>
+              <View style={styles.sectionContent}>
+                {
+                  data.professionalExperience.map((exp, index) => (
+
+                    <View style={{ ...styles.workExperience, width: "100%", }}>
+                      <View style={{ ...styles.jobTitleRow, width: "100%", justifyContent: "space-between" }}>
+                        <Text style={{ ...styles.jobTitle, width: "70%", alignItems: "center" }}>{exp.company}, {exp.position}</Text>
+                        <Text style={{ ...styles.jobDate, width: "30%", display: 'flex', flexDirection: "row", justifyContent: "flex-end", }}>{exp.duration}</Text>
+                      </View>
+                      {exp.description ?
+
+                        <Text style={styles.bulletPoint}>• {exp.description}</Text>
+                        : <></>
+                      }
+                    </View>
+
+
+
+                  ))
+                }
+
+              </View>
+            </View>
+          </>
+
+        )}
+
+
+
+        {/* Education */}
+        <View style={styles.hr} />
+        <View style={styles.sectionContainer}>
+          <Text style={styles.sectionTitle}>Education</Text>
+          <View style={styles.sectionContent}>
+            {data?.academicQualifications && data.academicQualifications.length > 0 && (
+              data.academicQualifications.map((academic, index) => (
+
+                <View style={styles.education}>
+
+                  <View style={{ width: "100%", display: "flex", flexDirection: "row" }}>
+
+                    <View style={{ width: "70%" }} >
+                      <Text style={styles.jobTitle}>{academic?.InstitutionName || academic?.InstituteName}</Text>
+                    </View>
+
+                    <View style={{ width: "30%" }} >
+                      <Text style={styles.jobDate}>{academic.duration}</Text>
+                    </View>
+
+
+                  </View>
+                  <Text style={styles.bulletPoint}>• {academic.description}</Text>
+                </View>
+
+              ))
+            )}
+          </View>
+        </View>
+
+
+        {/* Key Skills */}
+        <View style={styles.hr} />
+        <View style={styles.sectionContainer}>
+          <Text style={styles.sectionTitle}>Key Skills</Text>
+          <View style={styles.section}>
+            {data?.professionalSkills.map((skill, index) => (
+              <Text style={styles.item}>{skill}.</Text>
+
+            ))}
+          </View>
+        </View>
+      </Page>
+    </Document>
+  )
 };
-  
+
 
 
 
 const ReactPdfResumeTemplate1 = () => (
-    <PDFViewer width={"100%"} height={"100%"}>
-        <Resume />
-    </PDFViewer>
-  );
+  <PDFViewer width={"100%"} height={"100%"}>
+    <Resume />
+  </PDFViewer>
+);
 
 export default ReactPdfResumeTemplate1

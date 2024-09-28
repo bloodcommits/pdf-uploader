@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Page, Text, View, Document, StyleSheet, PDFViewer,Font,Image, Link } from '@react-pdf/renderer';
+import { Page, Text, View, Document, StyleSheet, PDFViewer, Font, Image, Link } from '@react-pdf/renderer';
 
 
 const styles = StyleSheet.create({
@@ -32,7 +32,7 @@ const styles = StyleSheet.create({
   contentText: {
     fontSize: 10,
     marginBottom: 5,
-    lineHeight:1.5,
+    lineHeight: 1.5,
   },
   technicalSkills: {
     marginBottom: 20,
@@ -57,8 +57,8 @@ const styles = StyleSheet.create({
   },
   titleText: {
     fontWeight: 'bold',
-    fontSize:12,
-    marginBottom:5,
+    fontSize: 12,
+    marginBottom: 5,
   },
   date: {
     fontSize: 10,
@@ -74,9 +74,9 @@ const styles = StyleSheet.create({
   techSkillsContainer: {
     display: 'flex',
     flexWrap: 'wrap',
-    gap:6,
-    flexDirection:"row"
-    
+    gap: 6,
+    flexDirection: "row"
+
   },
   skillItem: {
 
@@ -84,8 +84,8 @@ const styles = StyleSheet.create({
     fontSize: 10,
     marginBottom: 5,
   },
-  experinceblock:{
-    marginVertical:2.5
+  experinceblock: {
+    marginVertical: 2.5
   },
 });
 
@@ -116,22 +116,22 @@ const Resume = () => {
       platform: string;
       url: string;
     }>;
-    
+
     academicQualifications: Array<{
-      InstituteName:string;
-      description:string;
-      duration:string;
+      InstituteName: string;
+      description: string;
+      duration: string;
     }>;
-    
+
     certifications: Array<{
-      nameOfCertificates:string;
-      durationOfCompletion:string;
+      nameOfCertificates: string;
+      durationOfCompletion: string;
     }>;
     awards: Array<{
-      nameOfCertificate:string,
-      duration:string
+      nameOfCertificate: string,
+      duration: string
     }>;
-    roleCandidateDeserve:string;
+    roleCandidateDeserve: string;
   }>();
 
 
@@ -145,117 +145,117 @@ const Resume = () => {
 
     }
   }, []);
-return(
-  <Document>
-  <Page size="A4" style={styles.page}>
-    {/* Header */}
-    <View>
-      <Text style={styles.header}>{data?.personalInfo.name}</Text>
-      <Text style={styles.subHeader}>{data?.personalInfo.location} | {data?.personalInfo.email} | <Link style={styles.link} src="https://gmail.com">{data?.personalInfo.phone}</Link></Text>
-      
-      {data?.roleCandidateDeserve&& <Text style={styles.subHeader}>{data?.roleCandidateDeserve}</Text>}
-     
-    </View>
+  return (
+    <Document>
+      <Page size="A4" style={styles.page}>
+        {/* Header */}
+        <View>
+          <Text style={styles.header}>{data?.personalInfo.name}</Text>
+          <Text style={styles.subHeader}>{data?.personalInfo.location} | {data?.personalInfo.email} | <Link style={styles.link} src="https://gmail.com">{data?.personalInfo.phone}</Link></Text>
 
-    {/* Technical Skills */}
-    {data?.professionalSkills && data.professionalSkills.length>0 && (
-    <View style={styles.technicalSkills}>
-      <Text style={styles.sectionTitle}>Technical Skills</Text>
-      <View style={styles.techSkillsContainer}>
-      {(data?.professionalSkills || []).map((skills:any)=>{
-        return(
-          <Text style={styles.skillItem}>• {skills}</Text>  
-        )
-      })}
-        
-      </View>
-    </View>
- 
-      )}
+          {data?.roleCandidateDeserve && <Text style={styles.subHeader}>{data?.roleCandidateDeserve}</Text>}
 
-    {/* Projects */}
-    {data?.projects&&data.projects.length>0&&(
-    <View style={styles.projectList}>
-      <Text style={styles.sectionTitle}>Projects</Text>
-     {data.projects.map((project , index)=>(
-      <View style={styles.project}>
-        <View style={styles.titleRow}>
-          <Text style={styles.titleText}> {project.name}  {project.url}</Text>
-          <Text style={styles.date}>{project.date}</Text>
         </View>
-        <Text style={styles.contentText}>• {project.description}</Text>
-      </View>
-     ) )}
-    </View>
-    )}
 
-    {/* Education */}
-  
-      {data?.academicQualifications && data.academicQualifications.length>0 && (
-<>
-<View style={styles.section}>
-<Text style={styles.sectionTitle}>Education</Text>
-{        data.academicQualifications.map((academic)=>(
-          <View>
+        {/* Technical Skills */}
+        {data?.professionalSkills && data.professionalSkills.length > 0 && (
+          <View style={styles.technicalSkills}>
+            <Text style={styles.sectionTitle}>Technical Skills</Text>
+            <View style={styles.techSkillsContainer}>
+              {(data?.professionalSkills || []).map((skills: any) => {
+                return (
+                  <Text style={styles.skillItem}>• {skills}</Text>
+                )
+              })}
 
-          <View style={styles.titleRow}>
-            <Text style={styles.titleText}> {academic.InstituteName}</Text>
-            <Text style={styles.date}> {academic.duration}</Text>
+            </View>
           </View>
-          <Text style={styles.contentText}>• {academic.description}</Text>
-        </View>
-        ))
 
-}
+        )}
 
-</View>
-</>
-)
-      
-      }
+        {/* Projects */}
+        {data?.projects && data.projects.length > 0 && (
+          <View style={styles.projectList}>
+            <Text style={styles.sectionTitle}>Projects</Text>
+            {data.projects.map((project, index) => (
+              <View style={styles.project}>
+                <View style={styles.titleRow}>
+                  <Text style={styles.titleText}> {project.name}  {project.url}</Text>
+                  <Text style={styles.date}>{project.date}</Text>
+                </View>
+                <Text style={styles.contentText}>• {project.description}</Text>
+              </View>
+            ))}
+          </View>
+        )}
 
-    {/* Work Experience */}
-    {data?.professionalExperience && data.professionalExperience.length>0&&(
-    <View style={styles.section}>
-      <Text style={styles.sectionTitle}>Work Experience</Text>
-      {data.professionalExperience.map((exp , index)=>(
-      <View style={styles.experinceblock}>
-        <View style={styles.titleRow}>
-          <Text style={styles.titleText}>{exp.company} | {exp.position}</Text>
-          <Text style={styles.date}>{exp.duration}</Text>
-        </View>
-        {
-          exp.description&&(
-            <Text style={styles.contentText}> {`• ${exp.description}`}</Text>
-          )
+        {/* Education */}
+
+        {data?.academicQualifications && data.academicQualifications.length > 0 && (
+          <>
+            <View style={styles.section}>
+              <Text style={styles.sectionTitle}>Education</Text>
+              {data.academicQualifications.map((academic) => (
+                <View>
+
+                  <View style={styles.titleRow}>
+                    <Text style={styles.titleText}> {academic.InstituteName}</Text>
+                    <Text style={styles.date}> {academic.duration}</Text>
+                  </View>
+                  <Text style={styles.contentText}>• {academic.description}</Text>
+                </View>
+              ))
+
+              }
+
+            </View>
+          </>
+        )
+
         }
-      </View>
-      ))}
-    </View>
-    )}
 
-    {/* Awards & Achievements */}
-    {data?.awards && data.awards.length>0 &&(
-    <View style={styles.awardList}>
-    <Text style={styles.sectionTitle}>Awards & Achievements</Text>
-    {data.awards.map((award , index)=>(
-    <Text style={styles.contentText}>• {award.nameOfCertificate} {award.duration}</Text>
-    ))}
-  </View>
-    )}
+        {/* Work Experience */}
+        {data?.professionalExperience && data.professionalExperience.length > 0 && (
+          <View style={styles.section}>
+            <Text style={styles.sectionTitle}>Work Experience</Text>
+            {data.professionalExperience.map((exp, index) => (
+              <View style={styles.experinceblock}>
+                <View style={styles.titleRow}>
+                  <Text style={styles.titleText}>{exp.company} | {exp.position}</Text>
+                  <Text style={styles.date}>{exp.duration}</Text>
+                </View>
+                {
+                  exp.description && (
+                    <Text style={styles.contentText}> • {exp.description}</Text>
+                  )
+                }
+              </View>
+            ))}
+          </View>
+        )}
 
-  </Page>
-</Document>
-);
+        {/* Awards & Achievements */}
+        {data?.awards && data.awards.length > 0 && (
+          <View style={styles.awardList}>
+            <Text style={styles.sectionTitle}>Awards & Achievements</Text>
+            {data.awards.map((award, index) => (
+              <Text style={styles.contentText}>• {award.nameOfCertificate} {award.duration}</Text>
+            ))}
+          </View>
+        )}
+
+      </Page>
+    </Document>
+  );
 };
-  
+
 
 
 
 const ReactPdfResumeTemplate3 = () => (
-    <PDFViewer width={"100%"} height={"100%"}>
-        <Resume />
-    </PDFViewer>
-  );
+  <PDFViewer width={"100%"} height={"100%"}>
+    <Resume />
+  </PDFViewer>
+);
 
 export default ReactPdfResumeTemplate3

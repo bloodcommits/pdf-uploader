@@ -144,10 +144,11 @@ const styles = StyleSheet.create({
     fontSize: 10,
     fontWeight: "bold",
   },
-  lang:{
-    fontWeight:"extrabold",
-    fontSize:11,
+  lang: {
+    fontWeight: "extrabold",
+    fontSize: 11,
   },
+  common: {}
 });
 
 const Resume = () => {
@@ -195,7 +196,7 @@ const Resume = () => {
     }>;
     roleCandidateDeserve: string;
 
-    Languages:Array<string>;
+    Languages: Array<string>;
   }>();
 
   useEffect(() => {
@@ -278,7 +279,6 @@ const Resume = () => {
               ))}
             </>
           )}
-
         {/* Education section */}
         {data?.academicQualifications &&
           data.academicQualifications.length > 0 && (
@@ -315,7 +315,10 @@ const Resume = () => {
                   </Link>
                   <Text style={styles.projectDate}>{project.date}</Text>
                 </View>
-                <Text style={styles.listText}>• {project.description}</Text>
+                <View style={{ display: "flex", flexDirection: "row", alignItems: "flex-start", justifyContent: "flex-start", marginLeft: 5 }} >
+                  <Text style={{ fontSize: 10 }}>•</Text>
+                  <Text style={styles.listText}>{project.description}</Text>
+                </View>
               </View>
             ))}
           </>
@@ -329,30 +332,30 @@ const Resume = () => {
             <Text style={styles.sectionTitle}>ADDITIONAL INFORMATION</Text>
             <View style={styles.hr} />
             <Text style={styles.contentText}>
-              {data.Languages.length>0 && (
+              {data.Languages.length > 0 && (
                 <>
-              <Text style={styles.lang} >langauges :</Text>
-              
-                {
-                  data.Languages.map((lang , index)=>(
-                    <Text> {lang} </Text>
-                    
-                  ))}
-                  </>
+                  <Text style={styles.lang} >langauges :</Text>
+
+                  {
+                    data.Languages.map((lang, index) => (
+                      <Text> {lang} </Text>
+
+                    ))}
+                </>
 
               )}
             </Text>
             <Text style={styles.contentText}>
-              {data.certifications.length>0 && (
+              {data.certifications.length > 0 && (
                 <>
-              <Text style={styles.lang} >Certifications :</Text>
-              
-                {
-                  data.certifications.map((certificate , index)=>(
-                    <Text> {certificate.nameOfCertificate} </Text>
-                    
-                  ))}
-                  </>
+                  <Text style={styles.lang} >Certifications :</Text>
+
+                  {
+                    data.certifications.map((certificate, index) => (
+                      <Text> {certificate.nameOfCertificate} </Text>
+
+                    ))}
+                </>
 
               )}
             </Text>
