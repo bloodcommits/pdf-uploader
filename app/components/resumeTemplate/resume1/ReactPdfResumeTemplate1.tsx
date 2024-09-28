@@ -177,7 +177,7 @@ const Resume = () => {
 
 
         {/* Summary */}
-        {data?.professionalSummary && data?.professionalSummary.length > 1 && (
+        {data?.professionalSummary && data?.professionalSummary.length > 0 && (
           <>
             <View style={styles.line}></View>
             <View style={styles.sectionContainer}>
@@ -202,7 +202,7 @@ const Resume = () => {
                     <View style={{ ...styles.workExperience, width: "100%", }}>
                       <View style={{ ...styles.jobTitleRow, width: "100%", justifyContent: "space-between" }}>
                         <Text style={{ ...styles.jobTitle, width: "70%", alignItems: "center" }}>{exp.company}, {exp.position}</Text>
-                        <Text style={{ ...styles.jobDate, width: "30%", display: 'flex', flexDirection: "row", justifyContent: "flex-end", }}>{exp.duration}</Text>
+                        <Text style={{ ...styles.jobDate, width: "30%", display: "flex", flexDirection: "row", justifyContent: "flex-end" }}>{exp.duration}</Text>
                       </View>
                       {exp.description ?
 
@@ -234,13 +234,13 @@ const Resume = () => {
 
                 <View style={styles.education}>
 
-                  <View style={{ width: "100%", display: "flex", flexDirection: "row" }}>
+                  <View style={{ width: "100%", display: "flex", flexDirection: "row", justifyContent: "space-between", }}>
 
-                    <View style={{ width: "70%" }} >
+                    <View style={{ width: "70%", display: "flex", flexDirection: "row", alignItems: "flex-start" }} >
                       <Text style={styles.jobTitle}>{academic?.InstitutionName || academic?.InstituteName}</Text>
                     </View>
 
-                    <View style={{ width: "30%" }} >
+                    <View style={{ width: "30%", display: "flex", flexDirection: "row", justifyContent: "flex-end", alignItems: "flex-start" }} >
                       <Text style={styles.jobDate}>{academic.duration}</Text>
                     </View>
 
@@ -261,8 +261,7 @@ const Resume = () => {
           <Text style={styles.sectionTitle}>Key Skills</Text>
           <View style={styles.section}>
             {data?.professionalSkills.map((skill, index) => (
-              <Text style={styles.item}>{skill}.</Text>
-
+              <Text style={styles.item}>{skill}</Text>
             ))}
           </View>
         </View>
