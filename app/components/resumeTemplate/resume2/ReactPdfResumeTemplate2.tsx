@@ -354,7 +354,7 @@ const Resume = () => {
                   <View style={{ display: "flex", flexDirection: "column", width: "100%" }} >
 
                     {
-                      [...data.certifications, ...data.certifications].map((certificate, index) => (
+                      [...data.certifications].map((certificate, index) => (
                         <Text> {certificate.description} </Text>
 
                       ))}
