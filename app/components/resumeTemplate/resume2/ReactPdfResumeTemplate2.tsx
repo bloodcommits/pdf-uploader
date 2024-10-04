@@ -22,25 +22,25 @@ const styles = StyleSheet.create({
   },
   name: {
     fontSize: 24,
-    color: "#1a73e8",
-    fontWeight: "bold",
+    color: "#1e62cb",
+    fontWeight: 900,
     marginVertical: 2,
   },
   title: {
     fontSize: 12,
- 
+
     fontWeight: "bold",
     color: "black",
   },
   contactInfo: {
     fontSize: 10,
-    marginTop:2 ,
+    marginTop: 2,
     color: "gray",
   },
   sectionTitle: {
     fontSize: 12,
-    fontWeight: "bold",
-    color: "#1a73e8",
+    fontWeight: "ultrabold",
+    color: "#1e62cb",
   },
   contentText: {
     fontSize: 10,
@@ -50,8 +50,8 @@ const styles = StyleSheet.create({
   hr: {
     marginBottom: 5,
     marginTop: 5,
-    borderBottomWidth: 0.5,
-    borderBottomColor: "#1a73e8",
+    borderBottomWidth: 1,
+    borderBottomColor: "#1e62cb",
   },
   boldText: {
     fontSize: 10,
@@ -146,7 +146,7 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
   },
   lang: {
-    fontWeight: "extrabold",
+    fontWeight: "ultrabold",
     fontSize: 11,
   },
   common: {}
@@ -188,8 +188,8 @@ const Resume = () => {
     }>;
 
     certifications: Array<{
-      nameOfCertificate: string;
-      durationOfCompletion: string;
+      description: string;
+      // durationOfCompletion: string;
     }>;
     awards: Array<{
       nameOfAward: string;
@@ -343,19 +343,22 @@ const Resume = () => {
 
                     ))}
                 </>
-
               )}
             </Text>
             <Text style={styles.contentText}>
               {data.certifications.length > 0 && (
                 <>
-                  <Text style={styles.lang} >Certifications :</Text>
+                  <View>
+                    <Text style={styles.lang} >Certifications :</Text>
+                  </View>
+                  <View style={{ display: "flex", flexDirection: "column", width: "100%" }} >
 
-                  {
-                    data.certifications.map((certificate, index) => (
-                      <Text> {certificate.nameOfCertificate} </Text>
+                    {
+                      [...data.certifications, ...data.certifications].map((certificate, index) => (
+                        <Text> {certificate.description} </Text>
 
-                    ))}
+                      ))}
+                  </View>
                 </>
 
               )}

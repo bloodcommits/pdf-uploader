@@ -10,7 +10,7 @@ const styles = StyleSheet.create({
   header: {
     fontSize: 24,
     fontWeight: 'bold',
-    color: '#0f4880', // Dark blue header color
+    color: '#004081', // Dark blue header color
     // marginBottom:5
   },
   contactInfo: {
@@ -19,7 +19,7 @@ const styles = StyleSheet.create({
     marginTop: 5,
   },
   line: {
-    borderBottom: '2px solid #0f4880',
+    borderBottom: '2px solid #004081',
     marginVertical: 10,
   },
   sectionContainer: {
@@ -30,7 +30,7 @@ const styles = StyleSheet.create({
   sectionTitle: {
     fontSize: 12,
     fontWeight: 'bold',
-    color: '#0f4880',
+    color: '#004081',
     textTransform: 'uppercase',
     width: '25%', // Title on the left (30% of the width)
   },
@@ -64,7 +64,7 @@ const styles = StyleSheet.create({
   },
   jobDate: {
     fontSize: 10,
-    color:  'black',
+    color: 'black',
   },
   bulletPoint: {
     marginLeft: 10,
@@ -72,7 +72,7 @@ const styles = StyleSheet.create({
     fontSize: 10,
   },
   link: {
-    color: '#0f4880',
+    color: '#004081',
     textDecoration: 'none',
   },
   workExperience: {
@@ -82,7 +82,7 @@ const styles = StyleSheet.create({
     marginBottom: 12, // Margin between different education entries
   },
   hr: {
-    borderBottom: '1.5px solid #0f4880',
+    borderBottom: '1.5px solid #004081',
     marginVertical: 10
   },
   section: {
@@ -136,8 +136,8 @@ const Resume = () => {
     }>;
 
     certifications: Array<{
-      nameOfCertificates: string;
-      durationOfCompletion: string;
+      description: string;
+      // durationOfCompletion: string;
     }>;
     awards: Array<{
       nameOfAward: string;
@@ -157,7 +157,7 @@ const Resume = () => {
 
     }
   }, []);
-  const fliterresult = data?.professionalSkills.filter((word) => word.length<25);
+  const fliterresult = data?.professionalSkills.filter((word) => word.length < 25);
   console.log(fliterresult)
 
   return (
@@ -264,11 +264,11 @@ const Resume = () => {
           <Text style={styles.sectionTitle}>Key Skills</Text>
           <View style={styles.section}>
             {
-            
-            fliterresult?.map((skill, index) => (
-              <Text style={styles.item}>{skill}</Text>
-            ))
-            
+
+              fliterresult?.map((skill, index) => (
+                <Text style={styles.item}>{skill}</Text>
+              ))
+
             }
           </View>
         </View>
