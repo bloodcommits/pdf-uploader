@@ -126,7 +126,7 @@ const Resume = () => {
     }>;
 
     certifications: Array<{
-      nameOfCertificate: string;
+      description: string;
       durationOfCompletion: string;
     }>;
     awards: Array<{
@@ -257,7 +257,7 @@ const Resume = () => {
             <Text style={styles.sectionTitle}>Certifications</Text>
             {data.certifications.map((certi, index) => (
               <View style={styles.titleRow}>
-                <Text style={styles.contentText}>• {certi.nameOfCertificate} 
+                <Text style={styles.contentText}>• {certi.description} 
                   
                   </Text>
                   

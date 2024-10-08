@@ -152,7 +152,7 @@ const Resume = () => {
     }>;
 
     certifications: Array<{
-      nameOfCertificates: string;
+      description: string;
       durationOfCompletion: string;
     }>;
     awards: Array<{
@@ -298,7 +298,7 @@ const Resume = () => {
             {
             
             data?.certifications?.map((certificate) => (
-              <Text style={styles.certi}>{certificate.nameOfCertificate}</Text>
+              <Text style={styles.certi}>{certificate.description}</Text>
             ))
             
             }

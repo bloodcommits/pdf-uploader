@@ -41,7 +41,7 @@ export default function Home() {
  
  "additionalResponsibilities": [ "" , // ...multiple items ],
  
- "professionalSkills": [ "" , // ...multiple items just get skill in a single word do not use brakets to explain it , try to make some point  by yourself after parsing the resume text and that has to be sophesticated   ],
+ "professionalSkills": [ "" , // ...multiple items just get skill in a single word do not use brakets to explain it , try to make some point  by yourself after parsing the resume text and that has to be sophesticated and they have to ne multiple of 3  ],
  
  "projects:[ { name: string; url: string; description: string; date: string }],
 
