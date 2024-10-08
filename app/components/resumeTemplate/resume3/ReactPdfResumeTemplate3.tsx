@@ -126,7 +126,7 @@ const Resume = () => {
     }>;
 
     certifications: Array<{
-      nameOfCertificates: string;
+      nameOfCertificate: string;
       durationOfCompletion: string;
     }>;
     awards: Array<{
@@ -247,6 +247,20 @@ const Resume = () => {
                   </Text>
                   <Text style={styles.date}  >
                     {award.duration}</Text>
+              </View>
+                
+            ))}
+          </View>
+        )}
+        {data?.certifications && data.certifications.length > 0 && (
+          <View style={styles.awardList}>
+            <Text style={styles.sectionTitle}>Certifications</Text>
+            {data.certifications.map((certi, index) => (
+              <View style={styles.titleRow}>
+                <Text style={styles.contentText}>• {certi.nameOfCertificate} 
+                  
+                  </Text>
+                  
               </View>
                 
             ))}

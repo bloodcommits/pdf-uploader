@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Page, Text, View, Document, StyleSheet, PDFViewer, Link } from '@react-pdf/renderer';
+import { Certificate } from 'crypto';
 
 
 const styles = StyleSheet.create({
@@ -97,6 +98,21 @@ const styles = StyleSheet.create({
     fontSize: 10,
     marginBottom: 5,
   },
+  Certificatesection:{
+    display: 'flex',
+    // flexDirection: 'row',
+    justifyContent: 'space-between',
+    // flexWrap: 'wrap',
+    width: '70%', // Content on the right (70% of the width)
+    flex:1
+
+  },
+  certi: {
+    // marginLeft: 10,
+    marginBottom: 4,
+    fontSize: 10,
+  },
+
 
 });
 const Resume = () => {
@@ -136,7 +152,7 @@ const Resume = () => {
     }>;
 
     certifications: Array<{
-      nameOfCertificates: string;
+      nameOfCertificate: string;
       durationOfCompletion: string;
     }>;
     awards: Array<{
@@ -272,6 +288,28 @@ const Resume = () => {
             }
           </View>
         </View>
+        {
+          data?.certifications && data?.certifications.length>0 &&(
+            <>
+            <View style={styles.hr} />
+        <View style={styles.sectionContainer}>
+          <Text style={styles.sectionTitle}>Certification</Text>
+          <View style={styles.Certificatesection}>
+            {
+            
+            data?.certifications?.map((certificate) => (
+              <Text style={styles.certi}>{certificate.nameOfCertificate}</Text>
+            ))
+            
+            }
+          </View>
+        </View>
+            </>
+
+          )
+        }
+        
+
       </Page>
     </Document>
   )

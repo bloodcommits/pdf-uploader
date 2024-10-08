@@ -317,8 +317,8 @@ const Resume = () => {
                   <Text style={styles.projectDate}>{project.date}</Text>
                 </View>
                 <View style={{ display: "flex", flexDirection: "row", alignItems: "flex-start", justifyContent: "flex-start", marginLeft: 5 }} >
-                  <Text style={{ fontSize: 10 }}>•</Text>
-                  <Text style={styles.listText}>{project.description}</Text>
+                  <Text style={{ fontSize: 10 }}></Text>
+                  <Text style={styles.listText}>{"• "+ project.description}</Text>
                 </View>
               </View>
             ))}
