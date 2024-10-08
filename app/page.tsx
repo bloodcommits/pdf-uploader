@@ -41,7 +41,7 @@ export default function Home() {
  
  "additionalResponsibilities": [ "" , // ...multiple items ],
  
- "professionalSkills": [ "" , // ...multiple items just get skill in a single word do not use brakets to explain it , try to make some point  by yourself after parsing the resume text and that has to be sophesticated and they have to be multiple of 3  ],
+ "professionalSkills": [ "" , // ...multiple items just get skill in a single word do not use brakets to explain it , try to make some point  by yourself after parsing the resume text and that has to be sophesticated   ],
  
  "projects:[ { name: string; url: string; description: string; date: string }],
 
@@ -51,7 +51,7 @@ export default function Home() {
 
  "roleCandidateDeserve": string (after parsing the text tell me what the person is applying for . it shoul not be more than 2 words )
 
- "certifications":[{nameOfCertificate:string , durationOfCompletion:string}]
+ "certifications":[{description:string}]
 
  "awards":[{nameOfCertificate:string , duration:string}] 
 

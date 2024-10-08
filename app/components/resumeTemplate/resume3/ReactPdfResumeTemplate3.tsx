@@ -35,7 +35,7 @@ const styles = StyleSheet.create({
     lineHeight: 1.5,
   },
   technicalSkills: {
-    
+
     marginVertical: 3,
   },
   skillList: {
@@ -126,7 +126,7 @@ const Resume = () => {
     }>;
 
     certifications: Array<{
-      nameOfCertificate: string;
+      nameOfCertificates: string;
       durationOfCompletion: string;
     }>;
     awards: Array<{
@@ -242,13 +242,13 @@ const Resume = () => {
             <Text style={styles.sectionTitle}>Awards & Achievements</Text>
             {data.awards.map((award, index) => (
               <View style={styles.titleRow}>
-                <Text style={styles.contentText}>• {award.nameOfCertificate} 
-                  
-                  </Text>
-                  <Text style={styles.date}  >
-                    {award.duration}</Text>
+                <Text style={styles.contentText}>• {award.nameOfCertificate}
+
+                </Text>
+                <Text style={styles.date}  >
+                  {award.duration}</Text>
               </View>
-                
+
             ))}
           </View>
         )}
