@@ -149,7 +149,12 @@ const styles = StyleSheet.create({
     fontWeight: "ultrabold",
     fontSize: 11,
   },
-  common: {}
+  new:{
+    display:"flex",
+    flex:"column", 
+    gap:2
+    
+  }
 });
 
 const Resume = () => {
@@ -335,7 +340,7 @@ const Resume = () => {
             <Text style={styles.contentText}>
               {data.Languages.length > 0 && (
                 <>
-                  <Text style={styles.lang} >langauges :</Text>
+                  <Text style={styles.lang} >langauges     :</Text>
 
                   {
                     data.Languages.map((lang, index) => (
@@ -351,7 +356,7 @@ const Resume = () => {
                   <View>
                     <Text style={styles.lang} >Certifications :</Text>
                   </View>
-                  <View style={{ display: "flex", flexDirection: "column", width: "100%" }} >
+                  <View style={styles.new} >
 
                     {
                       [...data.certifications].map((certificate, index) => (

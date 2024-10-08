@@ -62,6 +62,8 @@ export default function Home() {
   
   // get the date in format like 2021 - 2025 or in Jan 2019 - Dec 2019 but maintain consistency 
 
+  // none of the fieled should empty  
+
 
  
  Resume content:${text}
