@@ -126,7 +126,7 @@ const Resume = () => {
     }>;
 
     certifications: Array<{
-      nameOfCertificates: string;
+      nameOfCertificate: string;
       durationOfCompletion: string;
     }>;
     awards: Array<{
