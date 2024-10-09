@@ -37,17 +37,17 @@ export default function Home() {
  
  "professionalSummary": [ "" , // ...multiple items ],
  
- "professionalExperience": [ { "position": ""(position shoul not be greater than of 2 words), "company": "", "description": "","duration": "" } ],
+ "professionalExperience": [ { "position": ""(position shoul not be greater than of 2 words), "company": "", "description": "","duration": ""(leave empty "" if there's not any) } ]// only use projects mentioned in the given resume, if it's not there then leave it empty,
  
  "additionalResponsibilities": [ "" , // ...multiple items ],
  
- "professionalSkills": [ "" , // ...multiple items just get skill in a single word do not use brakets to explain it , try to make some point  by yourself after parsing the resume text and that has to be sophesticated and they have to ne multiple of 3  ],
+ "professionalSkills": [ string array of skills, only use skills mentioned in the given resume, don't add extra skills ],
  
- "projects:[ { name: string; url: string; description: string; date: string }],
+ "projects:[ { name: string; url: string; description: string; date: string }] ,
 
  "sociallinks":[ {platform: string; url: string}],
 
- "academicQualifications": [ { InstituteName: string; description: string(if they have less description then generate some ); duration: string } ],
+ "academicQualifications": [ { InstituteName: string; description: string(if they have less description then generate some ); duration: string(leave empty "" if there's not any) } ],
 
  "roleCandidateDeserve": string (after parsing the text tell me what the person is applying for . it shoul not be more than 2 words )
 

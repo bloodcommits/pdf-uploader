@@ -7,8 +7,26 @@ import {
   StyleSheet,
   PDFViewer,
   Link,
+  Font
 } from "@react-pdf/renderer";
 import { fontWeight } from "html2canvas/dist/types/css/property-descriptors/font-weight";
+
+Font.register({
+  family: "Roboto",
+  fonts: [
+
+    {
+      src: "/assets/fonts/Roboto-Bold.ttf",
+      fontWeight: 900,
+    },
+
+    {
+      src: "/assets/fonts/Roboto-Medium.ttf",
+      fontWeight: 500,
+    },
+  ],
+
+})
 
 // Define styles to match the resume with colors, lines, and layout
 // Define styles
@@ -22,14 +40,16 @@ const styles = StyleSheet.create({
   },
   name: {
     fontSize: 24,
-    color: "#1e62cb",
+    color: "#1f62cb",
     fontWeight: 900,
     marginVertical: 2,
+    fontFamily: "Roboto"
   },
   title: {
     fontSize: 12,
 
-    fontWeight: "bold",
+    fontWeight: 500,
+    fontFamily: "Roboto",
     color: "black",
   },
   contactInfo: {
@@ -39,8 +59,10 @@ const styles = StyleSheet.create({
   },
   sectionTitle: {
     fontSize: 12,
-    fontWeight: "ultrabold",
-    color: "#1e62cb",
+    fontWeight: 900,
+    fontFamily: "Roboto",
+    color: "#1f62cb",
+    marginLeft: 10,
   },
   contentText: {
     fontSize: 10,
@@ -51,7 +73,7 @@ const styles = StyleSheet.create({
     marginBottom: 5,
     marginTop: 5,
     borderBottomWidth: 1,
-    borderBottomColor: "#1e62cb",
+    borderBottomColor: "#1f62cb",
   },
   boldText: {
     fontSize: 10,
@@ -83,14 +105,16 @@ const styles = StyleSheet.create({
   },
   jobTitle: {
     fontSize: 11,
-    fontWeight: "bold",
+    fontWeight: 500,
+    fontFamily: "Roboto",
     marginBottom: 3,
     marginTop: 3,
     marginRight: 10,
   },
   jobDate: {
     fontSize: 10,
-    fontWeight: "bold",
+    fontWeight: 500,
+    fontFamily: "Roboto",
   },
   jobPosition: {
     fontSize: 10,
@@ -115,14 +139,16 @@ const styles = StyleSheet.create({
   },
   eduTitle: {
     fontSize: 11,
-    fontWeight: "bold",
+    fontWeight: 500,
+    fontFamily: "Roboto",
     marginBottom: 1,
     marginTop: 2,
     marginRight: 10,
   },
   eduDate: {
     fontSize: 10,
-    fontWeight: "bold",
+    fontWeight: 500,
+    fontFamily: "Roboto",
   },
   eduPoints: {
     fontSize: 10,
@@ -149,11 +175,11 @@ const styles = StyleSheet.create({
     fontWeight: "ultrabold",
     fontSize: 11,
   },
-  new:{
-    display:"flex",
-    flex:"column", 
-    gap:2
-    
+  new: {
+    display: "flex",
+    flex: "column",
+    gap: 2
+
   }
 });
 
@@ -219,7 +245,7 @@ const Resume = () => {
       <Page style={styles.page}>
         {/* Header section */}
         <View style={styles.headerSection}>
-          <Text style={styles.name}>{data?.personalInfo.name}</Text>
+          <Text style={styles.name}>{`${data?.personalInfo.name}`.toUpperCase()}</Text>
           <Text style={styles.title}>{data?.roleCandidateDeserve}</Text>
           <Text style={styles.contactInfo}>
             {data?.personalInfo.location} | {data?.personalInfo.phone} |{" "}
@@ -279,7 +305,7 @@ const Resume = () => {
                   </View>
                   {/* <Text style={styles.jobPosition}>{company.position}</Text> */}
                   <Text style={styles.listText}>
-                    {company.description ? <>{company.description}</> : ""}
+                    • {company.description ? <>{company.description}</> : ""}
                   </Text>
                 </View>
               ))}
@@ -298,7 +324,7 @@ const Resume = () => {
                     <Text style={styles.eduTitle}>{academic.InstituteName}</Text>
                     <Text style={styles.eduDate}>{academic.duration}</Text>
                   </View>
-                  <Text style={styles.listText}>{academic.description}</Text>
+                  <Text style={styles.listText}>• {academic.description}</Text>
                 </>
               ))}
             </>
@@ -323,7 +349,7 @@ const Resume = () => {
                 </View>
                 <View style={{ display: "flex", flexDirection: "row", alignItems: "flex-start", justifyContent: "flex-start", marginLeft: 5 }} >
                   <Text style={{ fontSize: 10 }}></Text>
-                  <Text style={styles.listText}>{"• "+ project.description}</Text>
+                  <Text style={styles.listText}>{"• " + project.description}</Text>
                 </View>
               </View>
             ))}

@@ -1,15 +1,33 @@
 import React, { useEffect, useState } from 'react';
 import { Page, Text, View, Document, StyleSheet, PDFViewer, Font, Image, Link } from '@react-pdf/renderer';
 
+Font.register({
+  family: "Roboto",
+  fonts: [
+
+    {
+      src: "/assets/fonts/Roboto-Bold.ttf",
+      fontWeight: 900,
+    },
+
+    {
+      src: "/assets/fonts/Roboto-Medium.ttf",
+      fontWeight: 500,
+    },
+  ],
+
+})
+// not specified to ""
 
 const styles = StyleSheet.create({
   page: {
-    padding: 30,
+    paddingVertical: 30,
   },
   header: {
     textAlign: 'center',
     fontSize: 24,
-    fontWeight: 'bold',
+    fontWeight: 900,
+    fontFamily: "Roboto",
     marginBottom: 10,
   },
   subHeader: {
@@ -20,11 +38,13 @@ const styles = StyleSheet.create({
   },
   sectionTitle: {
     fontSize: 12,
-    fontWeight: 'bold',
+    fontWeight: 500,
+    fontFamily: "Roboto",
     marginBottom: 5,
     textTransform: 'uppercase',
     backgroundColor: '#d1e4e2',
     padding: 5,
+    paddingHorizontal: 30,
   },
   section: {
     marginVertical: 3
@@ -49,21 +69,26 @@ const styles = StyleSheet.create({
   },
   project: {
     marginBottom: 10,
+    paddingHorizontal: 30,
   },
   titleRow: {
     display: 'flex',
     flexDirection: 'row',
     justifyContent: 'space-between',
     marginVertical: 2,
+
   },
   titleText: {
-    fontWeight: 'bold',
+    fontWeight: 500,
+    fontFamily: "Roboto",
     fontSize: 12,
     marginBottom: 5,
   },
   date: {
     fontSize: 10,
-    fontStyle: 'italic',
+    // fontStyle: 'italic',
+    fontWeight: 500,
+    fontFamily: "Roboto",
   },
   awardList: {
     marginVertical: 3
@@ -77,7 +102,8 @@ const styles = StyleSheet.create({
     display: 'flex',
     flexWrap: 'wrap',
     gap: 6,
-    flexDirection: "row"
+    flexDirection: "row",
+    paddingHorizontal: 30,
 
   },
   skillItem: {
@@ -87,7 +113,8 @@ const styles = StyleSheet.create({
     marginBottom: 5,
   },
   experinceblock: {
-    marginVertical: 2.5
+    marginVertical: 2.5,
+    paddingHorizontal: 30,
   },
 });
 
@@ -152,10 +179,13 @@ const Resume = () => {
       <Page size="A4" style={styles.page}>
         {/* Header */}
         <View>
-          <Text style={styles.header}>{data?.personalInfo.name}</Text>
+          <Text style={styles.header}>{`${data?.personalInfo.name}`.toUpperCase()}</Text>
           <Text style={styles.subHeader}>{data?.personalInfo.location} | {data?.personalInfo.email} | <Link style={styles.link} src="https://gmail.com">{data?.personalInfo.phone}</Link></Text>
 
-          {data?.roleCandidateDeserve && <Text style={styles.subHeader}>{data?.roleCandidateDeserve}</Text>}
+          {data?.roleCandidateDeserve && <Text style={{
+            ...styles.subHeader, fontWeight: 500,
+            fontFamily: "Roboto",
+          }}>{data?.roleCandidateDeserve?.toUpperCase()}</Text>}
 
         </View>
 
@@ -198,7 +228,7 @@ const Resume = () => {
             <View style={styles.section}>
               <Text style={styles.sectionTitle}>Education</Text>
               {data.academicQualifications.map((academic) => (
-                <View>
+                <View style={{ paddingHorizontal: 30 }} >
 
                   <View style={styles.titleRow}>
                     <Text style={styles.titleText}> {academic.InstituteName}</Text>
@@ -241,7 +271,7 @@ const Resume = () => {
           <View style={styles.awardList}>
             <Text style={styles.sectionTitle}>Awards & Achievements</Text>
             {data.awards.map((award, index) => (
-              <View style={styles.titleRow}>
+              <View style={{ ...styles.titleRow, paddingHorizontal: 30 }}>
                 <Text style={styles.contentText}>• {award.nameOfCertificate}
 
                 </Text>
@@ -256,13 +286,13 @@ const Resume = () => {
           <View style={styles.awardList}>
             <Text style={styles.sectionTitle}>Certifications</Text>
             {data.certifications.map((certi, index) => (
-              <View style={styles.titleRow}>
-                <Text style={styles.contentText}>• {certi.description} 
-                  
-                  </Text>
-                  
+              <View style={{ ...styles.titleRow, paddingHorizontal: 30 }}>
+                <Text style={styles.contentText}>• {certi.description}
+
+                </Text>
+
               </View>
-                
+
             ))}
           </View>
         )}

@@ -1,6 +1,23 @@
 import React, { useEffect, useState } from 'react';
-import { Page, Text, View, Document, StyleSheet, PDFViewer, Link } from '@react-pdf/renderer';
+import { Page, Text, View, Document, StyleSheet, PDFViewer, Link, Font } from '@react-pdf/renderer';
 import { Certificate } from 'crypto';
+
+Font.register({
+  family: "Roboto",
+  fonts: [
+
+    {
+      src: "/assets/fonts/Roboto-Bold.ttf",
+      fontWeight: 900,
+    },
+
+    {
+      src: "/assets/fonts/Roboto-Medium.ttf",
+      fontWeight: 500,
+    },
+  ],
+
+})
 
 
 const styles = StyleSheet.create({
@@ -10,7 +27,8 @@ const styles = StyleSheet.create({
   },
   header: {
     fontSize: 24,
-    fontWeight: 'bold',
+    fontWeight: 900,
+    fontFamily: "Roboto",
     color: '#004081', // Dark blue header color
     // marginBottom:5
   },
@@ -30,7 +48,8 @@ const styles = StyleSheet.create({
   },
   sectionTitle: {
     fontSize: 12,
-    fontWeight: 'bold',
+    fontWeight: 'extrabold',
+    fontFamily: "Roboto",
     color: '#004081',
     textTransform: 'uppercase',
     width: '25%', // Title on the left (30% of the width)
@@ -59,11 +78,14 @@ const styles = StyleSheet.create({
     marginBottom: 2,
   },
   jobTitle: {
-    fontWeight: "extrabold",
+    fontWeight: 500,
+    fontFamily: "Roboto",
     color: 'black',
     fontSize: 11
   },
   jobDate: {
+    fontWeight: 500,
+    fontFamily: "Roboto",
     fontSize: 10,
     color: 'black',
   },
@@ -98,13 +120,13 @@ const styles = StyleSheet.create({
     fontSize: 10,
     marginBottom: 5,
   },
-  Certificatesection:{
+  Certificatesection: {
     display: 'flex',
     // flexDirection: 'row',
     justifyContent: 'space-between',
     // flexWrap: 'wrap',
     width: '70%', // Content on the right (70% of the width)
-    flex:1
+    flex: 1
 
   },
   certi: {
@@ -182,7 +204,7 @@ const Resume = () => {
       <Page size="A4" style={styles.page}>
         {/* Header */}
         <View>
-          <Text style={styles.header}>{data?.personalInfo.name}</Text>
+          <Text style={styles.header} stroke='' >{`${data?.personalInfo.name}`.toUpperCase()}</Text>
           <Text style={styles.contactInfo}>
             {data?.personalInfo.email} | {data?.personalInfo.phone} | {data?.personalInfo.location}
           </Text>
@@ -282,33 +304,35 @@ const Resume = () => {
             {
 
               fliterresult?.map((skill, index) => (
-                <Text style={styles.item}>{skill}</Text>
+
+                <Text style={styles.item}>• {skill}</Text>
               ))
+
 
             }
           </View>
         </View>
         {
-          data?.certifications && data?.certifications.length>0 &&(
+          data?.certifications && data?.certifications.length > 0 && (
             <>
-            <View style={styles.hr} />
-        <View style={styles.sectionContainer}>
-          <Text style={styles.sectionTitle}>Certification</Text>
-          <View style={styles.Certificatesection}>
-            {
-            
-            data?.certifications?.map((certificate) => (
-              <Text style={styles.certi}>{certificate.description}</Text>
-            ))
-            
-            }
-          </View>
-        </View>
+              <View style={styles.hr} />
+              <View style={styles.sectionContainer}>
+                <Text style={styles.sectionTitle}>Certification</Text>
+                <View style={styles.Certificatesection}>
+                  {
+
+                    data?.certifications?.map((certificate) => (
+                      <Text style={styles.certi}>{certificate.description}</Text>
+                    ))
+
+                  }
+                </View>
+              </View>
             </>
 
           )
         }
-        
+
 
       </Page>
     </Document>
